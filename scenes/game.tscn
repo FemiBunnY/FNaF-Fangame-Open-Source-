@@ -1,0 +1,147 @@
+[gd_scene load_steps=15 format=3 uid="uid://csbkhlfto4htr"]
+
+[ext_resource type="PackedScene" uid="uid://cbo6s7jdyi3k7" path="res://models ae/office.tscn" id="1_brfi8"]
+[ext_resource type="PackedScene" uid="uid://cle2nqpavlwdi" path="res://scenes/player.tscn" id="2_6ouqx"]
+[ext_resource type="Script" path="res://scripts/office_controll.gd" id="2_rqfa3"]
+[ext_resource type="Texture2D" uid="uid://c5ysrwfqqwve" path="res://ui/crosshair_1.png" id="3_xnpp7"]
+[ext_resource type="Script" path="res://scripts/ui_crosshair_control.gd" id="4_tyvx8"]
+[ext_resource type="Script" path="res://scripts/paths_controller.gd" id="6_7r8sm"]
+[ext_resource type="Script" path="res://scripts/animatronic_controller.gd" id="6_twgt1"]
+[ext_resource type="PackedScene" uid="uid://l3vrmlakqb81" path="res://models/paul_animatronic.glb" id="7_6hc4v"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_23cah"]
+
+[sub_resource type="Curve3D" id="Curve3D_cdx4r"]
+_data = {
+"points": PackedVector3Array(0, 0, 0, 1.28, 0, 0.53, 0, 0, 0, -0.735, 0, 0, 0, 0, 0, 1.42, 0, 2.74),
+"tilts": PackedFloat32Array(0, 0)
+}
+point_count = 2
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_gxw18"]
+
+[sub_resource type="Curve3D" id="Curve3D_2ii4c"]
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0.605, 0, 0, 0, 0, 0, -1.015, 0, 0, 0, 0, 0, 1.055, 0, -2.945),
+"tilts": PackedFloat32Array(0, 0)
+}
+point_count = 2
+
+[sub_resource type="Curve3D" id="Curve3D_2wbm4"]
+_data = {
+"points": PackedVector3Array(-0.615483, 0, 0.572287, 0.615483, 0, -0.572287, 0, 0, 0, 0.328959, 0, 0.280241, -0.328959, 0, -0.280241, -0.445628, 0, -2.98739, -0.0923557, 0, -0.667166, 0.0923557, 0, 0.667166, -1.44778, 0, -2.7189),
+"tilts": PackedFloat32Array(0, 0, 0)
+}
+point_count = 3
+
+[sub_resource type="Curve3D" id="Curve3D_4s3kj"]
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2.005),
+"tilts": PackedFloat32Array(0, 0)
+}
+point_count = 2
+
+[node name="Game" type="Node3D"]
+
+[node name="Office" parent="." instance=ExtResource("1_brfi8")]
+script = ExtResource("2_rqfa3")
+
+[node name="Player" parent="." instance=ExtResource("2_6ouqx")]
+transform = Transform3D(0.501984, 0, 0, 0, 0.501984, 0, 0, 0, 0.501984, 0, 0.65532, 0)
+
+[node name="UI" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("4_tyvx8")
+
+[node name="Crosshair" type="TextureRect" parent="UI"]
+modulate = Color(1, 1, 1, 0.490196)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -16.0
+offset_top = -15.0
+offset_right = 16.0
+offset_bottom = 17.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_xnpp7")
+
+[node name="Spotlight L" type="SpotLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.33407, 0.942548, 0, -0.942548, 0.33407, -4.14851, 3.31499, -3.247)
+
+[node name="Ventilation L" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.56403, 0.371704, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ventilation L"]
+shape = SubResource("BoxShape3D_23cah")
+
+[node name="stage" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.18566, 0, -3.67393)
+
+[node name="stage to window" type="Path3D" parent="stage"]
+curve = SubResource("Curve3D_cdx4r")
+
+[node name="stw follow" type="PathFollow3D" parent="stage/stage to window"]
+transform = Transform3D(-0.382559, 0, -0.923917, 0, 1, 0, 0.923917, 0, -0.382559, 0, 0, 0)
+script = ExtResource("6_7r8sm")
+
+[node name="animatronico" type="CharacterBody3D" parent="stage"]
+transform = Transform3D(0.262587, 0, 0.371574, 0, 0.455002, 0, -0.371574, 0, 0.262587, -0.0243082, -0.00927114, -0.0230772)
+script = ExtResource("6_twgt1")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="stage/animatronico"]
+shape = SubResource("BoxShape3D_gxw18")
+
+[node name="paul_animatronic" parent="stage/animatronico" instance=ExtResource("7_6hc4v")]
+transform = Transform3D(-1, 0, 8.56817e-08, 0, 1, 0, -8.56817e-08, 0, -1, 0, 0, 0)
+
+[node name="next_movement" type="Timer" parent="stage/animatronico"]
+wait_time = 5.0
+
+[node name="window" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.74233, 0, -0.944725)
+
+[node name="window to ventilation" type="Path3D" parent="window"]
+curve = SubResource("Curve3D_2ii4c")
+
+[node name="wtv follow" type="PathFollow3D" parent="window/window to ventilation"]
+transform = Transform3D(-4.37113e-08, 0, -0.999997, 0, 1, 0, 0.999997, 0, -4.37113e-08, 0, 0, 0)
+
+[node name="window to stage" type="Path3D" parent="window"]
+curve = SubResource("Curve3D_2wbm4")
+
+[node name="wts follow" type="PathFollow3D" parent="window/window to stage"]
+transform = Transform3D(0.266233, 0, 0.963905, 0, 1, 0, -0.963905, 0, 0.266233, -0.813503, 0, -3.176)
+progress = 3.59694
+
+[node name="ventilation" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0262427, 1.20715, -5.11726)
+
+[node name="ventilation to office" type="Path3D" parent="ventilation"]
+curve = SubResource("Curve3D_4s3kj")
+
+[node name="vto follow" type="PathFollow3D" parent="ventilation/ventilation to office"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
+
+[connection signal="interacting" from="Player" to="UI" method="_on_player_interacting"]
+[connection signal="interaction" from="Player" to="Office" method="_on_player_interaction"]
+[connection signal="notinteracting" from="Player" to="UI" method="_on_player_notinteracting"]
+[connection signal="body_shape_entered" from="Ventilation L" to="stage/animatronico" method="_on_ventilation_l_body_shape_entered"]
+[connection signal="body_shape_exited" from="Ventilation L" to="stage/animatronico" method="_on_ventilation_l_body_shape_exited"]
+[connection signal="path_has_end" from="stage/stage to window/stw follow" to="stage/animatronico" method="_on_stw_follow_path_has_end"]
+[connection signal="enter_move" from="stage/animatronico" to="stage/stage to window/stw follow" method="_on_animatronico_enter_move"]
+[connection signal="timeout" from="stage/animatronico/next_movement" to="stage/animatronico" method="_on_next_movement_timeout"]

@@ -1,0 +1,76 @@
+[gd_scene load_steps=7 format=3 uid="uid://btoten0v3bkkn"]
+
+[ext_resource type="PackedScene" uid="uid://bmj8xnosl78o4" path="res://models/switch.glb" id="1_crf8w"]
+
+[sub_resource type="Animation" id="Animation_vm6n8"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Cube_001:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_lkn00"]
+resource_name = "off"
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Cube_001:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.0858527, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_fg0bf"]
+resource_name = "on"
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Cube_001:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-0.0855211, 0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_klyrc"]
+_data = {
+"RESET": SubResource("Animation_vm6n8"),
+"off": SubResource("Animation_lkn00"),
+"on": SubResource("Animation_fg0bf")
+}
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_kqmvq"]
+size = Vector3(1.1767, 0.418213, 1.99451)
+
+[node name="switch" instance=ExtResource("1_crf8w")]
+
+[node name="Cube_001" parent="." index="1"]
+transform = Transform3D(0.271193, 0, 0, 0, 0.0837982, 0, 0, 0, 0.698318, 0, 0.124364, 0)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="2"]
+libraries = {
+"": SubResource("AnimationLibrary_klyrc")
+}
+
+[node name="switchO" type="StaticBody3D" parent="." index="3" groups=["interactuable"]]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="switchO" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00820923, 0.0784912, 0.00262451)
+shape = SubResource("BoxShape3D_kqmvq")
