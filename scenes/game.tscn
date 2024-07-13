@@ -29,7 +29,7 @@ point_count = 2
 
 [sub_resource type="Curve3D" id="Curve3D_2wbm4"]
 _data = {
-"points": PackedVector3Array(-0.615483, 0, 0.572287, 0.615483, 0, -0.572287, 0, 0, 0, 0.328959, 0, 0.280241, -0.328959, 0, -0.280241, -0.445628, 0, -2.98739, -0.0923557, 0, -0.667166, 0.0923557, 0, 0.667166, -1.44778, 0, -2.7189),
+"points": PackedVector3Array(-0.528442, 0, 0.044106, 0.528442, 0, -0.044106, 0, 0, 0, 0.692666, 0, 1.02053, -0.692666, 0, -1.02053, -0.208299, 0, -3.55838, -0.947818, 0, -0.68363, 0.947818, 0, 0.68363, -1.44778, 0, -2.7189),
 "tilts": PackedFloat32Array(0, 0, 0)
 }
 point_count = 3
@@ -120,13 +120,14 @@ curve = SubResource("Curve3D_2ii4c")
 
 [node name="wtv follow" type="PathFollow3D" parent="window/window to ventilation"]
 transform = Transform3D(-4.37113e-08, 0, -0.999997, 0, 1, 0, 0.999997, 0, -4.37113e-08, 0, 0, 0)
+script = ExtResource("6_7r8sm")
 
 [node name="window to stage" type="Path3D" parent="window"]
 curve = SubResource("Curve3D_2wbm4")
 
 [node name="wts follow" type="PathFollow3D" parent="window/window to stage"]
-transform = Transform3D(0.266233, 0, 0.963905, 0, 1, 0, -0.963905, 0, 0.266233, -0.813503, 0, -3.176)
-progress = 3.59694
+transform = Transform3D(0.680938, 0, -0.732335, 0, 1, 0, 0.732335, 0, 0.680938, 0, 0, 0)
+script = ExtResource("6_7r8sm")
 
 [node name="ventilation" type="Marker3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0262427, 1.20715, -5.11726)
@@ -137,6 +138,8 @@ curve = SubResource("Curve3D_4s3kj")
 [node name="vto follow" type="PathFollow3D" parent="ventilation/ventilation to office"]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
 
+[connection signal="lights_off" from="Office" to="stage/animatronico" method="_on_office_lights_off"]
+[connection signal="lights_on" from="Office" to="stage/animatronico" method="_on_office_lights_on"]
 [connection signal="interacting" from="Player" to="UI" method="_on_player_interacting"]
 [connection signal="interaction" from="Player" to="Office" method="_on_player_interaction"]
 [connection signal="notinteracting" from="Player" to="UI" method="_on_player_notinteracting"]
@@ -144,4 +147,8 @@ transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 
 [connection signal="body_shape_exited" from="Ventilation L" to="stage/animatronico" method="_on_ventilation_l_body_shape_exited"]
 [connection signal="path_has_end" from="stage/stage to window/stw follow" to="stage/animatronico" method="_on_stw_follow_path_has_end"]
 [connection signal="enter_move" from="stage/animatronico" to="stage/stage to window/stw follow" method="_on_animatronico_enter_move"]
+[connection signal="enter_move" from="stage/animatronico" to="window/window to ventilation/wtv follow" method="_on_animatronico_enter_move"]
+[connection signal="enter_move" from="stage/animatronico" to="window/window to stage/wts follow" method="_on_animatronico_enter_move"]
 [connection signal="timeout" from="stage/animatronico/next_movement" to="stage/animatronico" method="_on_next_movement_timeout"]
+[connection signal="path_has_end" from="window/window to ventilation/wtv follow" to="stage/animatronico" method="_on_wtv_follow_path_has_end"]
+[connection signal="path_has_end" from="window/window to stage/wts follow" to="stage/animatronico" method="_on_wts_follow_path_has_end"]
