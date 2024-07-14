@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://dctkqstrbxv2m"]
+
+[ext_resource type="Script" path="res://scripts/animatronic_controller.gd" id="1_5353u"]
+[ext_resource type="PackedScene" uid="uid://l3vrmlakqb81" path="res://models/paul_animatronic.glb" id="2_brrej"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_gxw18"]
+
+[node name="Animatronic" type="CharacterBody3D"]
+transform = Transform3D(0.262587, 0, 0.371574, 0, 0.455002, 0, -0.371574, 0, 0.262587, -0.0243082, -0.00927114, -0.0230772)
+script = ExtResource("1_5353u")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_gxw18")
+
+[node name="paul_animatronic" parent="." instance=ExtResource("2_brrej")]
+transform = Transform3D(-1, 0, 8.56817e-08, 0, 1, 0, -8.56817e-08, 0, -1, 0, 0, 0)
+
+[node name="next_movement" type="Timer" parent="."]
+wait_time = 5.0
+
+[connection signal="timeout" from="next_movement" to="." method="_on_next_movement_timeout"]
