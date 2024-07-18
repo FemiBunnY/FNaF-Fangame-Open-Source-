@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://csbkhlfto4htr"]
+[gd_scene load_steps=29 format=3 uid="uid://csbkhlfto4htr"]
 
 [ext_resource type="PackedScene" uid="uid://cbo6s7jdyi3k7" path="res://models ae/office.tscn" id="1_brfi8"]
 [ext_resource type="PackedScene" uid="uid://cle2nqpavlwdi" path="res://scenes/player.tscn" id="2_6ouqx"]
@@ -12,10 +12,17 @@
 [ext_resource type="Script" path="res://scripts/wtv_follow_controller.gd" id="9_co0t4"]
 [ext_resource type="Script" path="res://scripts/wts_follow_controller.gd" id="9_s5d5o"]
 [ext_resource type="Script" path="res://scripts/vto_follow_controller.gd" id="11_kd046"]
+[ext_resource type="Script" path="res://scripts/vto_follow_george_controller.gd" id="13_rvjf4"]
+[ext_resource type="PackedScene" uid="uid://dfpn5cieqp4dm" path="res://scenes/animatronic_george.tscn" id="13_t6l78"]
+[ext_resource type="Script" path="res://scripts/stw_follow_george_controller.gd" id="14_nsx07"]
+[ext_resource type="Script" path="res://scripts/wts_follow_george_controller.gd" id="16_oj40g"]
+[ext_resource type="Script" path="res://scripts/wtv_follow_george_controller.gd" id="17_1h7c4"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_t6xmm"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_23cah"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_2vqhx"]
 
 [sub_resource type="Curve3D" id="Curve3D_cdx4r"]
 _data = {
@@ -41,6 +48,29 @@ point_count = 3
 [sub_resource type="Curve3D" id="Curve3D_4s3kj"]
 _data = {
 "points": PackedVector3Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -0.127, 2.01),
+"tilts": PackedFloat32Array(0, 0)
+}
+point_count = 2
+
+[sub_resource type="Curve3D" id="Curve3D_186qd"]
+_data = {
+"points": PackedVector3Array(1.14407, 0, -0.955488, -1.14407, 0, 0.955488, 0, 0, 0, 1.06347, 0, 0.366623, -1.06347, 0, -0.366623, -1.86726, 0, 2.8448),
+"tilts": PackedFloat32Array(0, 0)
+}
+point_count = 2
+
+[sub_resource type="BoxMesh" id="BoxMesh_w1k3y"]
+
+[sub_resource type="Curve3D" id="Curve3D_hdfc3"]
+_data = {
+"points": PackedVector3Array(0.429877, 0, 0.1509, -0.429877, 0, -0.1509, 0.0013895, 0, 0.00151134, -0.783614, 0, 0.481513, 0.783614, 0, -0.481513, 0.881416, 0, -3.54491, 0.37852, 0, -0.307575, -0.37852, 0, 0.307575, 1.86814, 0, -2.84324),
+"tilts": PackedFloat32Array(0, 0, 0)
+}
+point_count = 3
+
+[sub_resource type="Curve3D" id="Curve3D_sq6x4"]
+_data = {
+"points": PackedVector3Array(0.519738, 0, 0.184465, -0.519738, 0, -0.184465, 0.00224638, 0, 0.00170755, 2.04943, 0, -0.0507879, -2.04943, 0, 0.0507879, -1.46498, 0, -4.55877),
 "tilts": PackedFloat32Array(0, 0)
 }
 point_count = 2
@@ -115,6 +145,12 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.56403, 0.371704, 0)
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Ventilation L"]
 shape = SubResource("BoxShape3D_23cah")
 
+[node name="VentilationR" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.56209, 0.537926, -0.0126625)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="VentilationR"]
+shape = SubResource("BoxShape3D_2vqhx")
+
 [node name="stage" type="Marker3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.18566, 0, -3.67393)
 
@@ -127,6 +163,7 @@ loop = false
 script = ExtResource("6_7r8sm")
 
 [node name="Animatronic" parent="stage" instance=ExtResource("9_0bsv3")]
+transform = Transform3D(0.229845, 0, 0.392671, 0, 0.455002, 0, -0.392671, 0, 0.229845, -0.0243082, -0.00927114, -0.0230772)
 
 [node name="window" type="Marker3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.74233, 0, -0.944725)
@@ -158,17 +195,71 @@ transform = Transform3D(-1, 5.51274e-09, -8.72488e-08, 0, 0.99801, 0.0630584, 8.
 loop = false
 script = ExtResource("11_kd046")
 
+[node name="vto_follow_george" type="PathFollow3D" parent="ventilation/ventilation to office"]
+transform = Transform3D(-1, 5.51274e-09, -8.72488e-08, 0, 0.99801, 0.0630583, 8.74228e-08, 0.0630583, -0.99801, 0, 0, 0)
+loop = false
+script = ExtResource("13_rvjf4")
+
+[node name="stage_george" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.49233, 0, -3.84077)
+
+[node name="stage_to_window" type="Path3D" parent="stage_george"]
+curve = SubResource("Curve3D_186qd")
+
+[node name="stw_follow_george" type="PathFollow3D" parent="stage_george/stage_to_window"]
+transform = Transform3D(-0.641014, 0, 0.767528, 0, 1, 0, -0.767528, 0, -0.641014, 0, 0, 0)
+loop = false
+script = ExtResource("14_nsx07")
+
+[node name="animatronic_george" parent="stage_george" instance=ExtResource("13_t6l78")]
+transform = Transform3D(0.725747, 0, -0.687962, 0, 1, 0, 0.687962, 0, 0.725747, 0, 0, 0)
+
+[node name="SpotLight3D" type="SpotLight3D" parent="stage_george"]
+transform = Transform3D(1, 0, 0, 0, 0.176123, 0.984368, 0, -0.984368, 0.176123, 0.248154, 3.96878, 0.647503)
+spot_range = 4.97758
+spot_angle = 22.4791
+
+[node name="stage_rotation" type="MeshInstance3D" parent="stage_george"]
+transform = Transform3D(0.0335902, 0, -0.0335902, 0, 0.0475037, 0, 0.0335902, 0, 0.0335902, 0, 0, 0)
+visible = false
+mesh = SubResource("BoxMesh_w1k3y")
+
+[node name="window_george" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.62353, 0, -0.997738)
+
+[node name="window_to_stage" type="Path3D" parent="window_george"]
+curve = SubResource("Curve3D_hdfc3")
+
+[node name="wts_follow_george" type="PathFollow3D" parent="window_george/window_to_stage"]
+transform = Transform3D(0.331217, 0, 0.943555, 0, 1, 0, -0.943555, 0, 0.331217, 0.0013895, 0, 0.00151134)
+loop = false
+script = ExtResource("16_oj40g")
+
+[node name="window_to_ventilation" type="Path3D" parent="window_george"]
+curve = SubResource("Curve3D_sq6x4")
+
+[node name="wtv_follow_george" type="PathFollow3D" parent="window_george/window_to_ventilation"]
+transform = Transform3D(0.334477, 0, 0.942404, 0, 1, 0, -0.942404, 0, 0.334477, 0.00224638, 0, 0.00170755)
+loop = false
+script = ExtResource("17_1h7c4")
+
 [connection signal="lights_off" from="Office" to="stage/Animatronic" method="_on_office_lights_off"]
+[connection signal="lights_off" from="Office" to="stage_george/animatronic_george" method="_on_office_lights_off"]
 [connection signal="lights_on" from="Office" to="stage/Animatronic" method="_on_office_lights_on"]
+[connection signal="lights_on" from="Office" to="stage_george/animatronic_george" method="_on_office_lights_on"]
 [connection signal="flashlight_off" from="Player" to="UI" method="_on_player_flashlight_off"]
 [connection signal="flashlight_on" from="Player" to="UI" method="_on_player_flashlight_on"]
 [connection signal="interacting" from="Player" to="UI" method="_on_player_interacting"]
 [connection signal="interaction" from="Player" to="Office" method="_on_player_interaction"]
 [connection signal="notinteracting" from="Player" to="UI" method="_on_player_notinteracting"]
 [connection signal="body_shape_entered" from="Ventilation C" to="stage/Animatronic" method="_on_ventilation_c_body_shape_entered"]
+[connection signal="body_shape_entered" from="Ventilation C" to="stage_george/animatronic_george" method="_on_ventilation_c_body_shape_entered"]
 [connection signal="body_shape_exited" from="Ventilation C" to="stage/Animatronic" method="_on_ventilation_c_body_shape_exited"]
+[connection signal="body_shape_exited" from="Ventilation C" to="stage_george/animatronic_george" method="_on_ventilation_c_body_shape_exited"]
 [connection signal="body_shape_entered" from="Ventilation L" to="stage/Animatronic" method="_on_ventilation_l_body_shape_entered"]
 [connection signal="body_shape_exited" from="Ventilation L" to="stage/Animatronic" method="_on_ventilation_l_body_shape_exited"]
+[connection signal="body_shape_entered" from="VentilationR" to="stage_george/animatronic_george" method="_on_ventilation_r_body_shape_entered"]
+[connection signal="body_shape_exited" from="VentilationR" to="stage_george/animatronic_george" method="_on_ventilation_r_body_shape_exited"]
 [connection signal="path_has_end" from="stage/stage to window/stw follow" to="stage/Animatronic" method="_on_stw_follow_path_has_end"]
 [connection signal="enter_move_from_stage_to_window" from="stage/Animatronic" to="stage/stage to window/stw follow" method="_on_animatronic_enter_move_from_stage_to_window"]
 [connection signal="enter_move_from_vent_to_office" from="stage/Animatronic" to="ventilation/ventilation to office/vto follow" method="_on_animatronic_enter_move_from_vent_to_office"]
@@ -178,3 +269,11 @@ script = ExtResource("11_kd046")
 [connection signal="path_has_end" from="window/window to ventilation/wtv follow" to="stage/Animatronic" method="_on_wtv_follow_path_has_end"]
 [connection signal="path_has_end" from="window/window to stage/wts follow" to="stage/Animatronic" method="_on_wts_follow_path_has_end"]
 [connection signal="path_has_end" from="ventilation/ventilation to office/vto follow" to="stage/Animatronic" method="_on_vto_follow_path_has_end"]
+[connection signal="path_has_end" from="ventilation/ventilation to office/vto_follow_george" to="stage_george/animatronic_george" method="_on_vto_follow_george_path_has_end"]
+[connection signal="path_has_end" from="stage_george/stage_to_window/stw_follow_george" to="stage_george/animatronic_george" method="_on_stw_follow_george_path_has_end"]
+[connection signal="start_move_from_stage_to_window" from="stage_george/animatronic_george" to="stage_george/stage_to_window/stw_follow_george" method="_on_animatronic_george_start_move_from_stage_to_window"]
+[connection signal="start_move_from_vent_to_office" from="stage_george/animatronic_george" to="ventilation/ventilation to office/vto_follow_george" method="_on_animatronic_george_start_move_from_vent_to_office"]
+[connection signal="start_move_from_window_to_stage" from="stage_george/animatronic_george" to="window_george/window_to_stage/wts_follow_george" method="_on_animatronic_george_start_move_from_window_to_stage"]
+[connection signal="start_move_from_window_to_vent" from="stage_george/animatronic_george" to="window_george/window_to_ventilation/wtv_follow_george" method="_on_animatronic_george_start_move_from_window_to_vent"]
+[connection signal="path_has_end" from="window_george/window_to_stage/wts_follow_george" to="stage_george/animatronic_george" method="_on_wts_follow_george_path_has_end"]
+[connection signal="path_has_end" from="window_george/window_to_ventilation/wtv_follow_george" to="stage_george/animatronic_george" method="_on_wtv_follow_george_path_has_end"]

@@ -6,7 +6,7 @@
 [sub_resource type="BoxShape3D" id="BoxShape3D_gxw18"]
 
 [node name="Animatronic" type="CharacterBody3D"]
-transform = Transform3D(0.262587, 0, 0.371574, 0, 0.455002, 0, -0.371574, 0, 0.262587, -0.0243082, -0.00927114, -0.0230772)
+transform = Transform3D(0.454994, 0, 0, 0, 0.455002, 0, 0, 0, 0.454994, -0.0243082, -0.00927114, -0.0230772)
 script = ExtResource("1_5353u")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
@@ -16,6 +16,6 @@ shape = SubResource("BoxShape3D_gxw18")
 transform = Transform3D(-1, 0, 8.56817e-08, 0, 1, 0, -8.56817e-08, 0, -1, 0, 0, 0)
 
 [node name="next_movement" type="Timer" parent="."]
-wait_time = 5.0
+wait_time = 224.937
 
 [connection signal="timeout" from="next_movement" to="." method="_on_next_movement_timeout"]

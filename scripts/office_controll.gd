@@ -8,7 +8,7 @@ signal lights_off
 
 var on:bool = false
 
-func _on_player_interaction():
+func _on_player_interaction() -> void:
 	if on:
 		light_1.light_energy = 1
 		light_2.light_energy = 1
@@ -19,3 +19,4 @@ func _on_player_interaction():
 		light_2.light_energy = 0
 		on = true
 		emit_signal("lights_off")
+

@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://dfpn5cieqp4dm"]
+
+[ext_resource type="PackedScene" uid="uid://bp4k2efsbvws5" path="res://models ae/george_animatronic.tscn" id="1_d3tpk"]
+[ext_resource type="Script" path="res://scripts/animatronic_george_controller.gd" id="1_tg4oh"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_82u02"]
+
+[node name="animatronic_george" type="CharacterBody3D"]
+script = ExtResource("1_tg4oh")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_82u02")
+
+[node name="blockbench_export" parent="." instance=ExtResource("1_d3tpk")]
+transform = Transform3D(-0.5, 0, -4.37114e-08, 0, 0.5, 0, 4.37114e-08, 0, -0.5, 0, 2.29939, 0)
+
+[node name="next_movement_timer" type="Timer" parent="."]
+wait_time = 5.0
+
+[connection signal="timeout" from="next_movement_timer" to="." method="_on_next_movement_timer_timeout"]

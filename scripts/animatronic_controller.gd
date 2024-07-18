@@ -72,11 +72,11 @@ func _on_ventilation_l_body_shape_exited(_body_rid, body, _body_shape_index, _lo
 	if body.name == "Player":
 		player_on_ventilation_l = false
 
-func _on_ventilation_c_body_shape_entered(_body_rid, body, _body_shape_index, _local_shape_index):
+func _on_ventilation_c_body_shape_entered(_body_rid, body, _body_shape_index, _local_shape_index) -> void:
 	if body.name == "Player":
 		player_on_ventilation_c = true
 
-func _on_ventilation_c_body_shape_exited(_body_rid, body, _body_shape_index, _local_shape_index):
+func _on_ventilation_c_body_shape_exited(_body_rid, body, _body_shape_index, _local_shape_index) -> void:
 	if body.name == "Player":
 		player_on_ventilation_c = false
 

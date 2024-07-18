@@ -4,7 +4,7 @@ signal path_has_end
 
 var walking:bool = false
 
-var speed:float = 1
+var speed:float = 0.9
 
 func _physics_process(delta:float) -> void:
 	if walking:
@@ -15,5 +15,5 @@ func _physics_process(delta:float) -> void:
 			walking = false
 			progress_ratio = 0
 
-func _on_animatronic_enter_move_from_window_to_stage() -> void:
+func _on_animatronic_george_start_move_from_window_to_stage() -> void:
 	walking = true

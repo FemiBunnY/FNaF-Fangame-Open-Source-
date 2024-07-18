@@ -15,5 +15,5 @@ func _physics_process(delta:float) -> void:
 			walking = false
 			progress_ratio = 0
 
-func _on_animatronic_enter_move_from_vent_to_office():
+func _on_animatronic_enter_move_from_vent_to_office() -> void:
 	walking = true
