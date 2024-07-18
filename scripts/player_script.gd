@@ -21,8 +21,11 @@ var is_flashlight_on:bool = false
 @onready var interaction_raycast = $CameraPivot/Camera/InteractionRaycast
 @onready var flashlight = $CameraPivot/Camera/Flashlight
 @onready var up_collider = $UpCollider
+@onready var breath = $breath
+@onready var black_screen = $"../UI/BlackScreen"
 
 func _ready() -> void:
+	#black_screen.color = Color(255,255,255,30)
 	pass
 
 func _input(event:InputEvent) -> void:
@@ -39,8 +42,10 @@ func _input(event:InputEvent) -> void:
 func _physics_process(delta:float) -> void:
 	if Input.is_action_just_pressed("crouch"):
 		is_crouching = true
+		breath.start()
 	elif Input.is_action_just_released("crouch"):
 		is_crouching = false
+		breath.stop()
 		
 	if is_crouching == true:
 		camera.position.y -= 1.5
@@ -50,6 +55,10 @@ func _physics_process(delta:float) -> void:
 		camera.position.y += 1.5
 		speed = 1
 		up_collider.disabled = false
+		#black_screen.modulate = Color(0,0,0,0)
+	if not breath.is_stopped():
+		pass
+		#black_screen.color = Color(0,0,0,int((1 - breath.time_left / 15) * 255))
 	
 	camera.position.y = clamp(camera.position.y, -1.5, 1)
 	
@@ -84,3 +93,6 @@ func _physics_process(delta:float) -> void:
 		velocity.z = move_toward(velocity.z, 0, SPEED)
 	
 	move_and_slide()
+
+func _on_breath_timeout():
+	print("dead")

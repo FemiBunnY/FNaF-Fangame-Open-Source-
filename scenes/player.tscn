@@ -34,3 +34,8 @@ spot_angle = 42.69
 shape = SubResource("BoxShape3D_5htxs")
 target_position = Vector3(0, 1, 0)
 debug_shape_custom_color = Color(0.656605, 0.43577, 0, 1)
+
+[node name="breath" type="Timer" parent="."]
+wait_time = 15.0
+
+[connection signal="timeout" from="breath" to="." method="_on_breath_timeout"]

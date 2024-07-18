@@ -1,17 +1,26 @@
 extends Control
 
 @onready var cross = $Crosshair
-@onready var scream_image = $ScreamImage
+@onready var scream_paul = $ScreamPaul
 @onready var flashlight_image = $FlashlightImage
+@onready var scream_george = $ScreamGeorge
+@onready var hour_label = $Hour
+@onready var timer = $Hour/TenMinutes
 
 var interacting:bool = false
 
 const CROSSHAIR_2 = preload("res://ui/crosshair_2.png")
 const CROSSHAIR_1 = preload("res://ui/crosshair_1.png")
 
+var hour:int = 12
+var minute:int = 0
+
 func _ready() -> void:
-	scream_image.visible = false
+	scream_paul.visible = false
+	scream_george.visible = false
 	flashlight_image.visible = false
+	update_hour()
+	timer.start()
 
 # Interaction
 func _on_player_interacting() -> void:
@@ -29,4 +38,21 @@ func _on_player_flashlight_on() -> void:
 
 # Jumpscare
 func _on_animatronic_jumpscare() -> void:
-	scream_image.visible = true
+	scream_paul.visible = true
+
+func _on_animatronic_george_jumpscare() -> void:
+	scream_george.visible = true
+
+
+func _on_ten_minutes_timeout() -> void:
+	minute += 1
+	if minute >= 6:
+		minute = 0
+		if hour == 12:
+			hour = 1
+		elif hour != 12:
+			hour += 1
+	update_hour()
+
+func update_hour() -> void:
+	hour_label.text = str(hour) + str(":") + str(minute) + str("0")

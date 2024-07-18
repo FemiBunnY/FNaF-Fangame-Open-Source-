@@ -4,6 +4,7 @@ signal start_move_from_stage_to_window
 signal start_move_from_window_to_stage
 signal start_move_from_window_to_vent
 signal start_move_from_vent_to_office
+signal jumpscare 
 
 var player_on_vent_r:bool = false
 var player_on_vent_c:bool = false
@@ -28,6 +29,7 @@ var phase:int = 0
 @onready var ventilation = $"../../ventilation"
 @onready var vto_follow = $"../../ventilation/ventilation to office/vto_follow_george"
 @onready var stw_rotation = $"../stage_rotation"
+@onready var animatronic_paul = $"../../stage/Animatronic"
 
 func _ready() -> void:
 	timer.start()
@@ -47,14 +49,23 @@ func _on_next_movement_timer_timeout() -> void:
 			reparent(wts_follow)
 			print("move from window to stage")
 			emit_signal("start_move_from_window_to_stage")
+		elif not lights_on and player_on_vent_r or not lights_on and player_on_vent_c:
+			if animatronic_paul.get_parent().name == "wtv follow":
+				rotation = stw_rotation.rotation
+				phase = 0
+				global_position = stage.position
+				reparent(stage)
+				timer.start()
+			else:
+				print("go to vent")
+				phase = 4
+				reparent(wtv_follow)
+				print("move from window to vent")
+				emit_signal("start_move_from_window_to_vent")
 		elif not player_on_vent_r:
 			print("kill")
-		elif player_on_vent_r and not lights_on:
-			print("go to vent")
-			phase = 4
-			reparent(wtv_follow)
-			print("move from window to vent")
-			emit_signal("start_move_from_window_to_vent")
+			emit_signal("jumpscare")
+			queue_free()
 	elif phase == 5:
 		phase = 6
 		global_position = ventilation.position
@@ -87,6 +98,8 @@ func _on_vto_follow_george_path_has_end() -> void:
 		timer.start()
 	elif not player_on_vent_c:
 		print("kill")
+		emit_signal("jumpscare")
+		queue_free()
 		phase = 6
 
 # Booleans

@@ -15,6 +15,8 @@ signal jumpscare
 @onready var wtv_follow = $"../../window/window to ventilation/wtv follow"
 @onready var ventilation = $"../../ventilation"
 @onready var vto_follow = $"../../ventilation/ventilation to office/vto follow"
+@onready var animatronic_george = $"../../stage_george/animatronic_george"
+@onready var stw_rotation = $"../stage_rotation"
 
 var phase:int = 0
 # phase 0: stage
@@ -33,6 +35,7 @@ var lights_on:bool = true
 
 func _ready() -> void:
 	timer.start()
+	rotation = stw_rotation.rotation
 
 func _on_next_movement_timeout() -> void:
 	timer.stop()
@@ -47,11 +50,19 @@ func _on_next_movement_timeout() -> void:
 			reparent(wts_follow)
 			emit_signal("enter_move_from_window_to_stage")
 			print("start moving from window to stage")
-		elif player_on_ventilation_l and not lights_on:
-			phase = 4
-			reparent(wtv_follow)
-			emit_signal("enter_move_from_window_to_vent")
-			print("start moving from window to ventilation")
+		elif not lights_on and player_on_ventilation_l or not lights_on and player_on_ventilation_c:
+			if animatronic_george.get_parent().name == "wtv_follow_george":
+				print("go back")
+				global_position = stage.position
+				reparent(stage)
+				phase = 0
+				timer.start()
+				print("start timer to next check window")
+			else:
+				phase = 4
+				reparent(wtv_follow)
+				emit_signal("enter_move_from_window_to_vent")
+				print("start moving from window to ventilation")
 		elif not player_on_ventilation_l:
 			print("attack")
 			emit_signal("jumpscare")
@@ -114,6 +125,7 @@ func _on_vto_follow_path_has_end():
 		print("go back")
 		global_position = stage.position
 		reparent(stage)
+		rotation = stw_rotation.rotation
 		phase = 0
 		timer.start()
 		print("start timer to next check window")
