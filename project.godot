@@ -10,9 +10,10 @@ config_version=5
 
 [application]
 
-config/name="LPFFOS"
+config/name="Isn't It a pity?"
 run/main_scene="res://scenes/gameshader.tscn"
 config/features=PackedStringArray("4.2", "GL Compatibility")
+run/max_fps=60
 config/icon="res://icon.svg"
 
 [display]
@@ -20,6 +21,9 @@ config/icon="res://icon.svg"
 window/size/viewport_width=320
 window/size/viewport_height=240
 window/size/resizable=false
+window/size/always_on_top=true
+window/size/window_width_override=640
+window/size/window_height_override=480
 window/stretch/mode="viewport"
 
 [editor]

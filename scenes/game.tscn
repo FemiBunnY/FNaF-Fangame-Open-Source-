@@ -1,8 +1,7 @@
-[gd_scene load_steps=31 format=3 uid="uid://csbkhlfto4htr"]
+[gd_scene load_steps=30 format=3 uid="uid://csbkhlfto4htr"]
 
 [ext_resource type="PackedScene" uid="uid://cbo6s7jdyi3k7" path="res://models ae/office.tscn" id="1_brfi8"]
 [ext_resource type="PackedScene" uid="uid://cle2nqpavlwdi" path="res://scenes/player.tscn" id="2_6ouqx"]
-[ext_resource type="Script" path="res://scripts/office_controll.gd" id="2_rqfa3"]
 [ext_resource type="Texture2D" uid="uid://c5ysrwfqqwve" path="res://ui/crosshair_1.png" id="3_xnpp7"]
 [ext_resource type="Script" path="res://scripts/ui_crosshair_control.gd" id="4_tyvx8"]
 [ext_resource type="Script" path="res://scripts/stw_follow_controller.gd" id="6_7r8sm"]
@@ -81,7 +80,6 @@ point_count = 2
 [node name="Game" type="Node3D"]
 
 [node name="Office" parent="." instance=ExtResource("1_brfi8")]
-script = ExtResource("2_rqfa3")
 
 [node name="Player" parent="." instance=ExtResource("2_6ouqx")]
 transform = Transform3D(0.501984, 0, 0, 0, 0.501984, 0, 0, 0, 0.501984, 0, 0.65532, 0)
@@ -96,13 +94,13 @@ grow_vertical = 2
 script = ExtResource("4_tyvx8")
 
 [node name="BlackScreen" type="ColorRect" parent="UI"]
-visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+color = Color(0, 0, 0, 1)
 
 [node name="Crosshair" type="TextureRect" parent="UI"]
 modulate = Color(1, 1, 1, 0.490196)
@@ -194,10 +192,10 @@ loop = false
 script = ExtResource("6_7r8sm")
 
 [node name="Animatronic" parent="stage" instance=ExtResource("9_0bsv3")]
-transform = Transform3D(0.454994, 0, 0, 0, 0.455002, 0, 0, 0, 0.454994, -0.0243082, -0.00927114, -0.0230772)
 
 [node name="stage_rotation" type="MeshInstance3D" parent="stage"]
 transform = Transform3D(0.0718952, 0, 0.124526, 0, 0.14379, 0, -0.124526, 0, 0.0718952, 0, 0, 0)
+visible = false
 mesh = SubResource("CapsuleMesh_sd1ag")
 
 [node name="window" type="Marker3D" parent="."]
@@ -207,7 +205,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.74233, 0, -0.944725)
 curve = SubResource("Curve3D_2ii4c")
 
 [node name="wtv follow" type="PathFollow3D" parent="window/window to ventilation"]
-transform = Transform3D(0.015369, 0, -0.999879, 0, 1, 0, 0.999879, 0, 0.015369, -0.0211468, 0, 0.0127858)
+transform = Transform3D(0.015369, 0, -0.999878, 0, 1, 0, 0.999878, 0, 0.015369, -0.0211468, 0, 0.0127858)
 loop = false
 script = ExtResource("9_co0t4")
 
@@ -247,7 +245,6 @@ loop = false
 script = ExtResource("14_nsx07")
 
 [node name="animatronic_george" parent="stage_george" instance=ExtResource("13_t6l78")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 
 [node name="SpotLight3D" type="SpotLight3D" parent="stage_george"]
 transform = Transform3D(1, 0, 0, 0, 0.176123, 0.984368, 0, -0.984368, 0.176123, 0.248154, 3.96878, 0.647503)
@@ -256,6 +253,7 @@ spot_angle = 22.4791
 
 [node name="stage_rotation" type="MeshInstance3D" parent="stage_george"]
 transform = Transform3D(0.117532, 0, -0.117532, 0, 0.166215, 0, 0.117532, 0, 0.117532, 0, 0, 0)
+visible = false
 mesh = SubResource("CapsuleMesh_2os7u")
 
 [node name="window_george" type="Marker3D" parent="."]
@@ -287,13 +285,19 @@ script = ExtResource("17_1h7c4")
 [connection signal="interaction" from="Player" to="Office" method="_on_player_interaction"]
 [connection signal="notinteracting" from="Player" to="UI" method="_on_player_notinteracting"]
 [connection signal="timeout" from="UI/Hour/TenMinutes" to="UI" method="_on_ten_minutes_timeout"]
+[connection signal="body_shape_entered" from="Ventilation C" to="Player" method="_on_ventilation_c_body_shape_entered"]
 [connection signal="body_shape_entered" from="Ventilation C" to="stage/Animatronic" method="_on_ventilation_c_body_shape_entered"]
 [connection signal="body_shape_entered" from="Ventilation C" to="stage_george/animatronic_george" method="_on_ventilation_c_body_shape_entered"]
+[connection signal="body_shape_exited" from="Ventilation C" to="Player" method="_on_ventilation_c_body_shape_exited"]
 [connection signal="body_shape_exited" from="Ventilation C" to="stage/Animatronic" method="_on_ventilation_c_body_shape_exited"]
 [connection signal="body_shape_exited" from="Ventilation C" to="stage_george/animatronic_george" method="_on_ventilation_c_body_shape_exited"]
+[connection signal="body_shape_entered" from="Ventilation L" to="Player" method="_on_ventilation_l_body_shape_entered"]
 [connection signal="body_shape_entered" from="Ventilation L" to="stage/Animatronic" method="_on_ventilation_l_body_shape_entered"]
+[connection signal="body_shape_exited" from="Ventilation L" to="Player" method="_on_ventilation_l_body_shape_exited"]
 [connection signal="body_shape_exited" from="Ventilation L" to="stage/Animatronic" method="_on_ventilation_l_body_shape_exited"]
+[connection signal="body_shape_entered" from="VentilationR" to="Player" method="_on_ventilation_r_body_shape_entered"]
 [connection signal="body_shape_entered" from="VentilationR" to="stage_george/animatronic_george" method="_on_ventilation_r_body_shape_entered"]
+[connection signal="body_shape_exited" from="VentilationR" to="Player" method="_on_ventilation_r_body_shape_exited"]
 [connection signal="body_shape_exited" from="VentilationR" to="stage_george/animatronic_george" method="_on_ventilation_r_body_shape_exited"]
 [connection signal="path_has_end" from="stage/stage to window/stw follow" to="stage/Animatronic" method="_on_stw_follow_path_has_end"]
 [connection signal="enter_move_from_stage_to_window" from="stage/Animatronic" to="stage/stage to window/stw follow" method="_on_animatronic_enter_move_from_stage_to_window"]

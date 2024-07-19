@@ -32,6 +32,7 @@ func _on_player_notinteracting() -> void:
 # Flashlight
 func _on_player_flashlight_off() -> void:
 	flashlight_image.visible = false
+	# play audio
 
 func _on_player_flashlight_on() -> void:
 	flashlight_image.visible = true

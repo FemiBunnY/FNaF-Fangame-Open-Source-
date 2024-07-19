@@ -1,6 +1,11 @@
-[gd_scene load_steps=4 format=3 uid="uid://cle2nqpavlwdi"]
+[gd_scene load_steps=9 format=3 uid="uid://cle2nqpavlwdi"]
 
 [ext_resource type="Script" path="res://scripts/player_script.gd" id="1_l55n2"]
+[ext_resource type="AudioStream" uid="uid://cd4ml2gvlkw10" path="res://sounds/flashlight_click.ogg" id="2_awox4"]
+[ext_resource type="AudioStream" uid="uid://d344mrn3gl01t" path="res://sounds/heart_beat.ogg" id="3_6jaf3"]
+[ext_resource type="AudioStream" uid="uid://dx7wwahbapqba" path="res://sounds/footsteps_normal.ogg" id="4_m220o"]
+[ext_resource type="AudioStream" uid="uid://m07l5syiggdu" path="res://sounds/footsteps_slower.ogg" id="5_5lx6u"]
+[ext_resource type="AudioStream" uid="uid://euqey5ucfdui" path="res://sounds/footsteps_metal_1.ogg" id="6_e0qtr"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_dgfyt"]
 
@@ -8,6 +13,9 @@
 
 [node name="Player" type="CharacterBody3D"]
 script = ExtResource("1_l55n2")
+
+[node name="FloorRaycast" type="RayCast3D" parent="."]
+debug_shape_custom_color = Color(0.683546, 2.88785e-07, 0.356648, 1)
 
 [node name="BottomCollider" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.00111389, 0)
@@ -37,5 +45,20 @@ debug_shape_custom_color = Color(0.656605, 0.43577, 0, 1)
 
 [node name="breath" type="Timer" parent="."]
 wait_time = 15.0
+
+[node name="FlashlightAudio" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_awox4")
+
+[node name="HeartbeatAudio" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_6jaf3")
+
+[node name="FootstepsAudio" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_m220o")
+
+[node name="FootstepsSlowerAudio" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_5lx6u")
+
+[node name="FootstepsMetalAudio" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_e0qtr")
 
 [connection signal="timeout" from="breath" to="." method="_on_breath_timeout"]
