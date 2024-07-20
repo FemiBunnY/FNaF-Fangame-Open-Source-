@@ -15,6 +15,8 @@ var sensitivity:float = 0.01
 var is_crouching:bool = false
 var is_flashlight_on:bool = false
 var player_on_vent:bool = false
+var is_activated_flashlight:bool = false
+var can_use_flashlight:bool = true
 
 @onready var camera_pivot = $CameraPivot
 @onready var camera = $CameraPivot/Camera
@@ -30,9 +32,13 @@ var player_on_vent:bool = false
 @onready var footsteps_slower_audio = $FootstepsSlowerAudio
 @onready var floor_raycast = $FloorRaycast
 @onready var footsteps_metal_audio = $FootstepsMetalAudio
+@onready var battery_timer = $CameraPivot/Camera/Flashlight/FlashlightBatteryTimer
+@onready var flashlight_battery = $"../UI/FlashlightBattery"
+@onready var flashlight_animations = $CameraPivot/Camera/Flashlight/FlashlightAnimations
 
 func _ready() -> void:
 	black_screen.set_color(Color(0,0,0,0))
+	flashlight_animations.play("RESET")
 
 func _input(event:InputEvent) -> void:
 	if event is InputEventMouseButton:
@@ -46,7 +52,11 @@ func _input(event:InputEvent) -> void:
 			camera.rotation.x = clamp(camera.rotation.x, deg_to_rad(-60), deg_to_rad(60))
 
 func _physics_process(delta:float) -> void:
-	
+	if is_activated_flashlight:
+		flashlight_battery.size = Vector2(9, 34 * (battery_timer.time_left/120))
+	elif not is_activated_flashlight:
+		flashlight_battery.size = Vector2(9, 34)
+		
 	if Input.is_action_just_pressed("crouch"):
 		is_crouching = true
 	elif Input.is_action_just_released("crouch"):
@@ -77,16 +87,21 @@ func _physics_process(delta:float) -> void:
 		emit_signal("interacting")
 	elif not interaction_raycast.is_colliding() or interaction_raycast.is_colliding() and  not interaction_raycast.get_collider().is_in_group("interactuable"):
 		emit_signal("notinteracting")
-		
-	if Input.is_action_just_pressed("flash") and not is_flashlight_on:
+	
+	if Input.is_action_just_pressed("flash") and not is_flashlight_on and can_use_flashlight:
 		flashlight_audio.play()
 		is_flashlight_on = true
 		flashlight.light_energy = 1
+		if not is_activated_flashlight:
+			battery_timer.start()
+			is_activated_flashlight = true
+		battery_timer.paused = false
 		emit_signal("flashlight_on")
 	elif Input.is_action_just_pressed("flash") and is_flashlight_on:
 		flashlight_audio.play()
 		is_flashlight_on = false
 		flashlight.light_energy = 0
+		battery_timer.paused = true
 		emit_signal("flashlight_off")
 		
 	if not is_on_floor():
@@ -160,3 +175,15 @@ func _on_ventilation_r_body_shape_exited(_body_rid, body, _body_shape_index, _lo
 	if body.name == "Player":
 		player_on_vent = false
 		print(player_on_vent)
+
+
+func _on_flashlight_battery_timer_timeout():
+	can_use_flashlight = false
+	battery_timer.stop()
+	flashlight_animations.play("blinking")
+
+func _on_flashlight_animations_animation_finished(_anim_name):
+	is_flashlight_on = false
+	flashlight.light_energy = 0
+	battery_timer.paused = true
+	emit_signal("flashlight_off")

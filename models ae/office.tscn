@@ -185,6 +185,7 @@ transform = Transform3D(-9.58853e-09, -0.21936, -9.58853e-09, 0, -9.58853e-09, 0
 [node name="SwitchAudioPlayer1" type="AudioStreamPlayer3D" parent="." index="27"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.88816, 1.23228, 1.23953)
 stream = ExtResource("3_cogd2")
+emission_angle_enabled = true
 
 [node name="SwitchAudioPlayer2" type="AudioStreamPlayer3D" parent="." index="28"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.88816, 1.09731, 1.23953)

@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://csbkhlfto4htr"]
+[gd_scene load_steps=31 format=3 uid="uid://csbkhlfto4htr"]
 
 [ext_resource type="PackedScene" uid="uid://cbo6s7jdyi3k7" path="res://models ae/office.tscn" id="1_brfi8"]
 [ext_resource type="PackedScene" uid="uid://cle2nqpavlwdi" path="res://scenes/player.tscn" id="2_6ouqx"]
@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://cfeep22il60k5" path="res://ui/flashlight.png" id="7_g42jd"]
 [ext_resource type="Texture2D" uid="uid://02y65gybeuvd" path="res://ui/scream_paul.png" id="7_ykndc"]
 [ext_resource type="Texture2D" uid="uid://drd1f51dkwwcj" path="res://ui/scream_george.png" id="8_n0xn7"]
+[ext_resource type="FontFile" uid="uid://drldanni5u5vd" path="res://fonts/DS-DIGIB.TTF" id="8_tfmje"]
 [ext_resource type="PackedScene" uid="uid://dctkqstrbxv2m" path="res://scenes/animatronic.tscn" id="9_0bsv3"]
 [ext_resource type="Script" path="res://scripts/wtv_follow_controller.gd" id="9_co0t4"]
 [ext_resource type="Script" path="res://scripts/wts_follow_controller.gd" id="9_s5d5o"]
@@ -118,10 +119,23 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("3_xnpp7")
 
+[node name="FlashlightBattery" type="ColorRect" parent="UI"]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 45.0
+offset_right = 25.0
+offset_bottom = 82.0
+rotation = 3.14159
+size_flags_horizontal = 0
+size_flags_vertical = 0
+
 [node name="FlashlightImage" type="TextureRect" parent="UI"]
 layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+offset_left = 11.0
+offset_top = -6.0
+offset_right = 75.0
+offset_bottom = 58.0
+size_flags_horizontal = 0
 texture = ExtResource("7_g42jd")
 
 [node name="ScreamPaul" type="TextureRect" parent="UI"]
@@ -149,10 +163,14 @@ layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -41.0
-offset_bottom = 23.0
+offset_left = -51.0
+offset_top = 4.0
+offset_right = -3.0
+offset_bottom = 29.0
 grow_horizontal = 0
-theme_override_font_sizes/font_size = 24
+size_flags_horizontal = 8
+theme_override_fonts/font = ExtResource("8_tfmje")
+theme_override_font_sizes/font_size = 32
 text = "12:00"
 horizontal_alignment = 2
 
@@ -205,7 +223,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.74233, 0, -0.944725)
 curve = SubResource("Curve3D_2ii4c")
 
 [node name="wtv follow" type="PathFollow3D" parent="window/window to ventilation"]
-transform = Transform3D(0.015369, 0, -0.999878, 0, 1, 0, 0.999878, 0, 0.015369, -0.0211468, 0, 0.0127858)
+transform = Transform3D(0.0153689, 0, -0.999877, 0, 1, 0, 0.999877, 0, 0.0153689, -0.0211468, 0, 0.0127858)
 loop = false
 script = ExtResource("9_co0t4")
 
