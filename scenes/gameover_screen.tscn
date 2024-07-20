@@ -1,0 +1,57 @@
+[gd_scene load_steps=4 format=3 uid="uid://c7fhehctw0irb"]
+
+[ext_resource type="Texture2D" uid="uid://cp7l7p1t8q5uv" path="res://ui/scream.png" id="1_a4csk"]
+[ext_resource type="FontFile" uid="uid://wlpwvus150xx" path="res://fonts/TENOCLOCK-Regular.ttf" id="1_noixl"]
+[ext_resource type="Script" path="res://scripts/restart_text_blinking.gd" id="2_wa78u"]
+
+[node name="GameoverScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="FaceTexture" type="TextureRect" parent="."]
+modulate = Color(1, 1, 1, 0.333333)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_a4csk")
+
+[node name="VerticalContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -137.5
+offset_top = -44.0
+offset_right = 137.5
+offset_bottom = 44.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="GameoverText" type="Label" parent="VerticalContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(0.63374, 0.0829661, 4.81308e-08, 1)
+theme_override_fonts/font = ExtResource("1_noixl")
+theme_override_font_sizes/font_size = 60
+text = "Game Over"
+
+[node name="RestartText" type="Label" parent="VerticalContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Press \"Space\" to restart."
+script = ExtResource("2_wa78u")
+
+[node name="NextBlinkTimer" type="Timer" parent="VerticalContainer/RestartText"]
+wait_time = 0.2
+autostart = true
+
+[connection signal="timeout" from="VerticalContainer/RestartText/NextBlinkTimer" to="VerticalContainer/RestartText" method="_on_next_blink_timer_timeout"]

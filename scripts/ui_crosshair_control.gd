@@ -6,6 +6,7 @@ extends Control
 @onready var scream_george = $ScreamGeorge
 @onready var hour_label = $Hour
 @onready var timer = $Hour/TenMinutes
+@onready var wait_after_jumpscare = $WaitAfterJumpscare
 
 var interacting:bool = false
 
@@ -40,10 +41,11 @@ func _on_player_flashlight_on() -> void:
 # Jumpscare
 func _on_animatronic_jumpscare() -> void:
 	scream_paul.visible = true
+	wait_after_jumpscare.start()
 
 func _on_animatronic_george_jumpscare() -> void:
 	scream_george.visible = true
-
+	wait_after_jumpscare.start()
 
 func _on_ten_minutes_timeout() -> void:
 	minute += 1
@@ -57,3 +59,7 @@ func _on_ten_minutes_timeout() -> void:
 
 func update_hour() -> void:
 	hour_label.text = str(hour) + str(":") + str(minute) + str("0")
+
+
+func _on_wait_after_jumpscare_timeout():
+	get_tree().change_scene_to_file("res://scenes/gameover_screen.tscn")

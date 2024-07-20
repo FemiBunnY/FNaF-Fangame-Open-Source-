@@ -94,6 +94,9 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("4_tyvx8")
 
+[node name="WaitAfterJumpscare" type="Timer" parent="UI"]
+wait_time = 0.5
+
 [node name="BlackScreen" type="ColorRect" parent="UI"]
 layout_mode = 1
 anchors_preset = 15
@@ -302,6 +305,7 @@ script = ExtResource("17_1h7c4")
 [connection signal="interacting" from="Player" to="UI" method="_on_player_interacting"]
 [connection signal="interaction" from="Player" to="Office" method="_on_player_interaction"]
 [connection signal="notinteracting" from="Player" to="UI" method="_on_player_notinteracting"]
+[connection signal="timeout" from="UI/WaitAfterJumpscare" to="UI" method="_on_wait_after_jumpscare_timeout"]
 [connection signal="timeout" from="UI/Hour/TenMinutes" to="UI" method="_on_ten_minutes_timeout"]
 [connection signal="body_shape_entered" from="Ventilation C" to="Player" method="_on_ventilation_c_body_shape_entered"]
 [connection signal="body_shape_entered" from="Ventilation C" to="stage/Animatronic" method="_on_ventilation_c_body_shape_entered"]

@@ -140,7 +140,7 @@ func _physics_process(delta:float) -> void:
 	move_and_slide()
 
 func _on_breath_timeout():
-	print("dead")
+	get_tree().change_scene_to_file("res://scenes/gameover_screen.tscn")
 
 
 func _on_ventilation_c_body_shape_entered(_body_rid, body, _body_shape_index, _local_shape_index):
@@ -163,7 +163,6 @@ func _on_ventilation_l_body_shape_entered(_body_rid, body, _body_shape_index, _l
 func _on_ventilation_l_body_shape_exited(_body_rid, body, _body_shape_index, _local_shape_index):
 	if body.name == "Player":
 		player_on_vent = false
-		print(player_on_vent)
 
 func _on_ventilation_r_body_shape_entered(_body_rid, body, _body_shape_index, _local_shape_index):
 	if body.name == "Player":
@@ -174,7 +173,6 @@ func _on_ventilation_r_body_shape_entered(_body_rid, body, _body_shape_index, _l
 func _on_ventilation_r_body_shape_exited(_body_rid, body, _body_shape_index, _local_shape_index):
 	if body.name == "Player":
 		player_on_vent = false
-		print(player_on_vent)
 
 
 func _on_flashlight_battery_timer_timeout():
