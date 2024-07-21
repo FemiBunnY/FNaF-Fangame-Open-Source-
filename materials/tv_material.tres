@@ -1,0 +1,10 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://bwarox0wmovdw"]
+
+[ext_resource type="Texture2D" uid="uid://0dom1gle3qfh" path="res://icon.svg" id="1_bx3d5"]
+
+[resource]
+resource_name = "Material.003"
+cull_mode = 2
+albedo_color = Color(0, 0, 0, 1)
+roughness = 0.170886
+emission_texture = ExtResource("1_bx3d5")

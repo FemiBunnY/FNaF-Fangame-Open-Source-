@@ -5,6 +5,7 @@ signal interacting
 signal notinteracting
 signal flashlight_on
 signal flashlight_off
+signal interaction_tv
 
 const SPEED:int = 5
 
@@ -81,7 +82,10 @@ func _physics_process(delta:float) -> void:
 	camera.position.y = clamp(camera.position.y, -1.5, 1)
 	
 	if interaction_raycast.is_colliding() and interaction_raycast.get_collider().is_in_group("interactuable") and Input.is_action_just_pressed("interact"):
-		emit_signal("interaction")
+		if interaction_raycast.get_collider().name == "switchO":
+			emit_signal("interaction")
+		elif interaction_raycast.get_collider().name == "TV":
+			emit_signal("interaction_tv")
 	
 	if interaction_raycast.is_colliding() and interaction_raycast.get_collider().is_in_group("interactuable"):
 		emit_signal("interacting")

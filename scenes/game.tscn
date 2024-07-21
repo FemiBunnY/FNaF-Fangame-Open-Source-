@@ -229,7 +229,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.74233, 0, -0.944725)
 curve = SubResource("Curve3D_2ii4c")
 
 [node name="wtv follow" type="PathFollow3D" parent="window/window to ventilation"]
-transform = Transform3D(0.0153689, 0, -0.999877, 0, 1, 0, 0.999877, 0, 0.0153689, -0.0211468, 0, 0.0127858)
+transform = Transform3D(0.0153689, 0, -0.999876, 0, 1, 0, 0.999876, 0, 0.0153689, -0.0211468, 0, 0.0127858)
 loop = false
 script = ExtResource("9_co0t4")
 
@@ -307,6 +307,7 @@ script = ExtResource("17_1h7c4")
 [connection signal="flashlight_on" from="Player" to="UI" method="_on_player_flashlight_on"]
 [connection signal="interacting" from="Player" to="UI" method="_on_player_interacting"]
 [connection signal="interaction" from="Player" to="Office" method="_on_player_interaction"]
+[connection signal="interaction_tv" from="Player" to="Office" method="_on_player_interaction_tv"]
 [connection signal="notinteracting" from="Player" to="UI" method="_on_player_notinteracting"]
 [connection signal="timeout" from="UI/WaitAfterJumpscare" to="UI" method="_on_wait_after_jumpscare_timeout"]
 [connection signal="timeout" from="UI/Hour/TenMinutes" to="UI" method="_on_ten_minutes_timeout"]

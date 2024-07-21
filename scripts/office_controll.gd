@@ -8,6 +8,8 @@ signal lights_off
 @onready var swtich_audio_1 = $SwitchAudioPlayer1
 @onready var swtich_audio_2 = $SwitchAudioPlayer2
 
+@export var tv_material:StandardMaterial3D
+
 var on:bool = false
 
 func _on_player_interaction() -> void:
@@ -25,3 +27,9 @@ func _on_player_interaction() -> void:
 		on = true
 		emit_signal("lights_off")
 		
+
+func _on_player_interaction_tv():
+	if tv_material.emission_enabled == false:
+		tv_material.emission_enabled = true
+	elif tv_material.emission_enabled == true:
+		tv_material.emission_enabled = false
