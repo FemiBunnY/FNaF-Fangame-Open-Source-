@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://cbo6s7jdyi3k7"]
+[gd_scene load_steps=18 format=3 uid="uid://cbo6s7jdyi3k7"]
 
 [ext_resource type="PackedScene" uid="uid://bub1tnqsm2dy2" path="res://models/offic.glb" id="1_l8qxu"]
 [ext_resource type="Script" path="res://scripts/office_controll.gd" id="2_ce34y"]
@@ -7,6 +7,10 @@
 [ext_resource type="AudioStream" uid="uid://hy36tu1gneef" path="res://sounds/light_switch_1.ogg" id="3_cogd2"]
 [ext_resource type="AudioStream" uid="uid://d1550u47nxput" path="res://sounds/light_switch_2.ogg" id="4_r75lf"]
 [ext_resource type="PackedScene" uid="uid://cp8ihntgcc475" path="res://scenes/tv.tscn" id="6_nheev"]
+[ext_resource type="AudioStream" uid="uid://cqlbfg3ymu4n2" path="res://sounds/tv_click_1.ogg" id="8_3oohm"]
+[ext_resource type="AudioStream" uid="uid://y4unc2cb11da" path="res://sounds/tv_click_2.ogg" id="9_qyun1"]
+[ext_resource type="AudioStream" uid="uid://bxo4lare75a6w" path="res://sounds/tv_noise.ogg" id="10_av1ol"]
+[ext_resource type="AudioStream" uid="uid://bijfsus85siph" path="res://sounds/vent_ambience.ogg" id="11_dn8q0"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_w27ys"]
 size = Vector3(5.21542, 0.170105, 5.57019)
@@ -202,3 +206,21 @@ stream = ExtResource("4_r75lf")
 
 [node name="TV" parent="." index="29" instance=ExtResource("6_nheev")]
 transform = Transform3D(0.998222, 0, -0.0596026, 0, 1, 0, 0.0596026, 0, 0.998222, -0.693372, 0.694681, 2.00207)
+
+[node name="TVClickOnAudio" type="AudioStreamPlayer3D" parent="TV" index="2"]
+stream = ExtResource("8_3oohm")
+
+[node name="TVClickOffAudio" type="AudioStreamPlayer3D" parent="TV" index="3"]
+stream = ExtResource("9_qyun1")
+
+[node name="TVNoiseAudio" type="AudioStreamPlayer3D" parent="TV" index="4"]
+stream = ExtResource("10_av1ol")
+volume_db = -5.0
+
+[node name="VentilationAmbienceAudio" type="AudioStreamPlayer3D" parent="." index="30"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.14217, -3.55486)
+stream = ExtResource("11_dn8q0")
+volume_db = -15.0
+autoplay = true
+
+[connection signal="start_timer" from="." to="TV" method="_on_offic_start_timer"]

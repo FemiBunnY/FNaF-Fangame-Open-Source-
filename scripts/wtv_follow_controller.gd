@@ -5,6 +5,7 @@ signal path_has_end
 var walking:bool = false
 
 #@onready var game = $"../../.."
+@onready var wtv_footsteps_audio = $WTVFootstepsAudio
 
 var speed:float 
 
@@ -20,6 +21,12 @@ func _physics_process(delta:float) -> void:
 			emit_signal("path_has_end")
 			walking = false
 			progress_ratio = 0
-
+			wtv_footsteps_audio.stop()
+			
 func _on_animatronic_enter_move_from_window_to_vent() -> void:
 	walking = true
+	wtv_footsteps_audio.play()
+
+
+func _on_game_hour_passed():
+	speed += 0.1 

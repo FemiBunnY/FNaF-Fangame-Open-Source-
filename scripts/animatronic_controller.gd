@@ -40,6 +40,7 @@ var lights_on:bool = true
 func _ready() -> void:
 	var game = get_node("../..")
 	animatronic_a  = game.paul_a/10
+	print(animatronic_a)
 	
 	timer.start(randf_range(5 / animatronic_a, 10 / animatronic_a))
 	rotation = stw_rotation.rotation
@@ -136,3 +137,8 @@ func _on_vto_follow_path_has_end():
 		phase = 0
 		timer.start(randf_range(5 / animatronic_a, 10 / animatronic_a))
 		print("start timer to next check window")
+
+
+func _on_game_hour_passed():
+	animatronic_a += 0.1
+	print(animatronic_a)

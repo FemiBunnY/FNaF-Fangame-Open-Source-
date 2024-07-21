@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=3 uid="uid://csbkhlfto4htr"]
+[gd_scene load_steps=34 format=3 uid="uid://csbkhlfto4htr"]
 
 [ext_resource type="PackedScene" uid="uid://cbo6s7jdyi3k7" path="res://models ae/office.tscn" id="1_brfi8"]
 [ext_resource type="Script" path="res://scripts/game_controller.gd" id="1_xalfk"]
@@ -13,10 +13,12 @@
 [ext_resource type="PackedScene" uid="uid://dctkqstrbxv2m" path="res://scenes/animatronic.tscn" id="9_0bsv3"]
 [ext_resource type="Script" path="res://scripts/wtv_follow_controller.gd" id="9_co0t4"]
 [ext_resource type="Script" path="res://scripts/wts_follow_controller.gd" id="9_s5d5o"]
+[ext_resource type="AudioStream" uid="uid://cuw7it63v8elr" path="res://sounds/footsteps_animatronic.ogg" id="11_574ds"]
 [ext_resource type="Script" path="res://scripts/vto_follow_controller.gd" id="11_kd046"]
 [ext_resource type="Script" path="res://scripts/vto_follow_george_controller.gd" id="13_rvjf4"]
 [ext_resource type="PackedScene" uid="uid://dfpn5cieqp4dm" path="res://scenes/animatronic_george.tscn" id="13_t6l78"]
 [ext_resource type="Script" path="res://scripts/stw_follow_george_controller.gd" id="14_nsx07"]
+[ext_resource type="AudioStream" uid="uid://i0doesv3rfji" path="res://sounds/moving_vent_animatronic.ogg" id="16_3j5s5"]
 [ext_resource type="Script" path="res://scripts/wts_follow_george_controller.gd" id="16_oj40g"]
 [ext_resource type="Script" path="res://scripts/wtv_follow_george_controller.gd" id="17_1h7c4"]
 
@@ -82,6 +84,7 @@ point_count = 2
 [node name="Game" type="Node3D"]
 script = ExtResource("1_xalfk")
 paul_a = 12.0
+tv_a = 5.0
 
 [node name="Office" parent="." instance=ExtResource("1_brfi8")]
 
@@ -215,6 +218,9 @@ transform = Transform3D(-0.382554, 0, -0.923904, 0, 1, 0, 0.923904, 0, -0.382554
 loop = false
 script = ExtResource("6_7r8sm")
 
+[node name="STWFootstepsAudio" type="AudioStreamPlayer3D" parent="stage/stage to window/stw follow"]
+stream = ExtResource("11_574ds")
+
 [node name="Animatronic" parent="stage" instance=ExtResource("9_0bsv3")]
 
 [node name="stage_rotation" type="MeshInstance3D" parent="stage"]
@@ -233,6 +239,9 @@ transform = Transform3D(0.0153689, 0, -0.999876, 0, 1, 0, 0.999876, 0, 0.0153689
 loop = false
 script = ExtResource("9_co0t4")
 
+[node name="WTVFootstepsAudio" type="AudioStreamPlayer3D" parent="window/window to ventilation/wtv follow"]
+stream = ExtResource("11_574ds")
+
 [node name="window to stage" type="Path3D" parent="window"]
 curve = SubResource("Curve3D_2wbm4")
 
@@ -240,6 +249,9 @@ curve = SubResource("Curve3D_2wbm4")
 transform = Transform3D(0.0649382, 0, -0.997884, 0, 1, 0, 0.997884, 0, 0.0649382, -0.0211449, 0, 0.0099352)
 loop = false
 script = ExtResource("9_s5d5o")
+
+[node name="WTSFootstepsAudio" type="AudioStreamPlayer3D" parent="window/window to stage/wts follow"]
+stream = ExtResource("11_574ds")
 
 [node name="ventilation" type="Marker3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0262427, 1.15946, -5.11726)
@@ -252,10 +264,17 @@ transform = Transform3D(-1, 5.51274e-09, -8.72488e-08, 0, 0.99801, 0.0630584, 8.
 loop = false
 script = ExtResource("11_kd046")
 
+[node name="VTOFootstepsAudio" type="AudioStreamPlayer3D" parent="ventilation/ventilation to office/vto follow"]
+stream = ExtResource("16_3j5s5")
+
 [node name="vto_follow_george" type="PathFollow3D" parent="ventilation/ventilation to office"]
 transform = Transform3D(-1, 5.51274e-09, -8.72488e-08, 0, 0.99801, 0.0630584, 8.74228e-08, 0.0630584, -0.99801, 0, 0, 0)
 loop = false
 script = ExtResource("13_rvjf4")
+
+[node name="VTOFootstepsAudio" type="AudioStreamPlayer3D" parent="ventilation/ventilation to office/vto_follow_george"]
+stream = ExtResource("16_3j5s5")
+pitch_scale = 1.2
 
 [node name="stage_george" type="Marker3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.49233, 0, -3.84077)
@@ -267,6 +286,10 @@ curve = SubResource("Curve3D_186qd")
 transform = Transform3D(-0.641014, 0, 0.767528, 0, 1, 0, -0.767528, 0, -0.641014, 0, 0, 0)
 loop = false
 script = ExtResource("14_nsx07")
+
+[node name="STWFootstepsAudio" type="AudioStreamPlayer3D" parent="stage_george/stage_to_window/stw_follow_george"]
+stream = ExtResource("11_574ds")
+pitch_scale = 1.2
 
 [node name="animatronic_george" parent="stage_george" instance=ExtResource("13_t6l78")]
 
@@ -291,6 +314,10 @@ transform = Transform3D(0.331217, 0, 0.943555, 0, 1, 0, -0.943555, 0, 0.331217, 
 loop = false
 script = ExtResource("16_oj40g")
 
+[node name="WTSFootstepsAudio" type="AudioStreamPlayer3D" parent="window_george/window_to_stage/wts_follow_george"]
+stream = ExtResource("11_574ds")
+pitch_scale = 1.2
+
 [node name="window_to_ventilation" type="Path3D" parent="window_george"]
 curve = SubResource("Curve3D_sq6x4")
 
@@ -299,6 +326,20 @@ transform = Transform3D(0.334477, 0, 0.942404, 0, 1, 0, -0.942404, 0, 0.334477, 
 loop = false
 script = ExtResource("17_1h7c4")
 
+[node name="WTVFootstepsAudio" type="AudioStreamPlayer3D" parent="window_george/window_to_ventilation/wtv_follow_george"]
+stream = ExtResource("11_574ds")
+pitch_scale = 1.2
+
+[connection signal="hour_passed" from="." to="stage/stage to window/stw follow" method="_on_game_hour_passed"]
+[connection signal="hour_passed" from="." to="stage/Animatronic" method="_on_game_hour_passed"]
+[connection signal="hour_passed" from="." to="window/window to ventilation/wtv follow" method="_on_game_hour_passed"]
+[connection signal="hour_passed" from="." to="window/window to stage/wts follow" method="_on_game_hour_passed"]
+[connection signal="hour_passed" from="." to="ventilation/ventilation to office/vto follow" method="_on_game_hour_passed"]
+[connection signal="hour_passed" from="." to="ventilation/ventilation to office/vto_follow_george" method="_on_game_hour_passed"]
+[connection signal="hour_passed" from="." to="stage_george/stage_to_window/stw_follow_george" method="_on_game_hour_passed"]
+[connection signal="hour_passed" from="." to="stage_george/animatronic_george" method="_on_game_hour_passed"]
+[connection signal="hour_passed" from="." to="window_george/window_to_stage/wts_follow_george" method="_on_game_hour_passed"]
+[connection signal="hour_passed" from="." to="window_george/window_to_ventilation/wtv_follow_george" method="_on_game_hour_passed"]
 [connection signal="lights_off" from="Office" to="stage/Animatronic" method="_on_office_lights_off"]
 [connection signal="lights_off" from="Office" to="stage_george/animatronic_george" method="_on_office_lights_off"]
 [connection signal="lights_on" from="Office" to="stage/Animatronic" method="_on_office_lights_on"]
@@ -309,6 +350,7 @@ script = ExtResource("17_1h7c4")
 [connection signal="interaction" from="Player" to="Office" method="_on_player_interaction"]
 [connection signal="interaction_tv" from="Player" to="Office" method="_on_player_interaction_tv"]
 [connection signal="notinteracting" from="Player" to="UI" method="_on_player_notinteracting"]
+[connection signal="one_hour" from="UI" to="." method="_on_ui_one_hour"]
 [connection signal="timeout" from="UI/WaitAfterJumpscare" to="UI" method="_on_wait_after_jumpscare_timeout"]
 [connection signal="timeout" from="UI/Hour/TenMinutes" to="UI" method="_on_ten_minutes_timeout"]
 [connection signal="body_shape_entered" from="Ventilation C" to="Player" method="_on_ventilation_c_body_shape_entered"]

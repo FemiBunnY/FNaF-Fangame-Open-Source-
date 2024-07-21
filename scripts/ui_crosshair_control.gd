@@ -1,5 +1,7 @@
 extends Control
 
+signal one_hour
+
 @onready var cross = $Crosshair
 @onready var scream_paul = $ScreamPaul
 @onready var flashlight_image = $FlashlightImage
@@ -51,6 +53,7 @@ func _on_ten_minutes_timeout() -> void:
 	minute += 1
 	if minute >= 6:
 		minute = 0
+		emit_signal("one_hour")
 		if hour == 12:
 			hour = 1
 		elif hour != 12:

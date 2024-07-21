@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://c7fhehctw0irb"]
+[gd_scene load_steps=5 format=3 uid="uid://c7fhehctw0irb"]
 
 [ext_resource type="Texture2D" uid="uid://cp7l7p1t8q5uv" path="res://ui/scream.png" id="1_a4csk"]
 [ext_resource type="FontFile" uid="uid://wlpwvus150xx" path="res://fonts/TENOCLOCK-Regular.ttf" id="1_noixl"]
 [ext_resource type="Script" path="res://scripts/restart_text_blinking.gd" id="2_wa78u"]
+[ext_resource type="AudioStream" uid="uid://ca05hbfdsmt2d" path="res://sounds/death.ogg" id="4_v0jyn"]
 
 [node name="GameoverScreen" type="Control"]
 layout_mode = 3
@@ -53,5 +54,10 @@ script = ExtResource("2_wa78u")
 [node name="NextBlinkTimer" type="Timer" parent="VerticalContainer/RestartText"]
 wait_time = 0.2
 autostart = true
+
+[node name="DeathAudio" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_v0jyn")
+volume_db = -15.0
+autoplay = true
 
 [connection signal="timeout" from="VerticalContainer/RestartText/NextBlinkTimer" to="VerticalContainer/RestartText" method="_on_next_blink_timer_timeout"]

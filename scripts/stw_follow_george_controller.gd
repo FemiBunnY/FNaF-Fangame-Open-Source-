@@ -2,6 +2,8 @@ extends PathFollow3D
 
 signal path_has_end
 
+@onready var stw_footsteps_audio = $STWFootstepsAudio
+
 var walking:bool = false
 
 var speed:float
@@ -18,7 +20,11 @@ func _physics_process(delta:float) -> void:
 			emit_signal("path_has_end")
 			walking = false
 			progress_ratio = 0
-
+			stw_footsteps_audio.stop()
 
 func _on_animatronic_george_start_move_from_stage_to_window() -> void:
 	walking = true
+	stw_footsteps_audio.play()
+
+func _on_game_hour_passed():
+	speed += 0.1 

@@ -56,10 +56,10 @@ func _on_next_movement_timer_timeout() -> void:
 			emit_signal("start_move_from_window_to_stage")
 		elif not lights_on and player_on_vent_r or not lights_on and player_on_vent_c:
 			if animatronic_paul.get_parent().name == "wtv follow":
-				rotation = stw_rotation.rotation
 				phase = 0
 				global_position = stage.position
 				reparent(stage)
+				rotation = stw_rotation.rotation
 				timer.start(randf_range(5 / animatronic_a, 12 / animatronic_a))
 			else:
 				print("go to vent")
@@ -129,3 +129,8 @@ func _on_office_lights_off() -> void:
 
 func _on_office_lights_on() -> void:
 	lights_on = true
+
+
+func _on_game_hour_passed():
+	animatronic_a += 0.1
+	

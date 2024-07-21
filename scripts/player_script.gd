@@ -11,7 +11,7 @@ const SPEED:int = 5
 
 var gravity: float = ProjectSettings.get_setting("physics/3d/default_gravity")
 var speed:float = 1
-var sensitivity:float = 0.01
+var sensitivity:float = 0.015
 
 var is_crouching:bool = false
 var is_flashlight_on:bool = false
