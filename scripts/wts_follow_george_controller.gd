@@ -4,7 +4,11 @@ signal path_has_end
 
 var walking:bool = false
 
-var speed:float = 0.9
+var speed:float
+
+func _ready():
+	var game = get_node("../../..")
+	speed = game.george_a/10
 
 func _physics_process(delta:float) -> void:
 	if walking:

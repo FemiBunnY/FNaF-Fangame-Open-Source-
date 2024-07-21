@@ -20,6 +20,7 @@ grow_vertical = 2
 
 [node name="SubViewport" type="SubViewport" parent="."]
 handle_input_locally = false
+audio_listener_enable_3d = true
 render_target_update_mode = 4
 
 [node name="Game" parent="SubViewport" instance=ExtResource("2_tofwa")]

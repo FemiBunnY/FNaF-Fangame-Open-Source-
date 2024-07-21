@@ -20,6 +20,8 @@ var phase:int = 0
 # phase 6: ventilation to office
 # phase 7: office
 
+var animatronic_a:float
+
 @onready var timer = $next_movement_timer
 @onready var stw_follow = $"../stage_to_window/stw_follow_george"
 @onready var window = $"../../window_george"
@@ -32,7 +34,10 @@ var phase:int = 0
 @onready var animatronic_paul = $"../../stage/Animatronic"
 
 func _ready() -> void:
-	timer.start()
+	var game = get_node("../..")
+	animatronic_a  = game.george_a/10
+	
+	timer.start(randf_range(5 / animatronic_a, 12 / animatronic_a))
 	rotation = stw_rotation.rotation
 
 func _on_next_movement_timer_timeout() -> void:
@@ -55,7 +60,7 @@ func _on_next_movement_timer_timeout() -> void:
 				phase = 0
 				global_position = stage.position
 				reparent(stage)
-				timer.start()
+				timer.start(randf_range(5 / animatronic_a, 12 / animatronic_a))
 			else:
 				print("go to vent")
 				phase = 4
@@ -76,17 +81,17 @@ func _on_next_movement_timer_timeout() -> void:
 func _on_stw_follow_george_path_has_end() -> void:
 	phase = 2
 	reparent(window)
-	timer.start()
+	timer.start(randf_range(3 / animatronic_a, 6 / animatronic_a))
 
 func _on_wts_follow_george_path_has_end() -> void:
 	phase = 0
 	reparent(stage)
-	timer.start()
+	timer.start(randf_range(5 / animatronic_a, 12 / animatronic_a))
 
 func _on_wtv_follow_george_path_has_end() -> void:
 	phase = 5
 	reparent(ventilation)
-	timer.start()
+	timer.start(randf_range(5 / animatronic_a, 12 / animatronic_a))
 
 func _on_vto_follow_george_path_has_end() -> void:
 	if player_on_vent_c:
@@ -95,7 +100,7 @@ func _on_vto_follow_george_path_has_end() -> void:
 		phase = 0
 		global_position = stage.position
 		reparent(stage)
-		timer.start()
+		timer.start(randf_range(5 / animatronic_a, 12 / animatronic_a))
 	elif not player_on_vent_c:
 		print("kill")
 		emit_signal("jumpscare")

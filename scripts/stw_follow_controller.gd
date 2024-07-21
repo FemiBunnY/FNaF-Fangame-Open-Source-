@@ -2,10 +2,15 @@ extends PathFollow3D
 
 signal path_has_end
 
+#@onready var game = $"../../.."
+
+var speed:float
+
 var walking:bool = false
 
-var speed:float = 1
-
+func _ready():
+	var game = get_node("../../..")
+	speed = game.paul_a/10
 func _physics_process(delta:float) -> void:
 	if walking:
 		if progress_ratio < 1:

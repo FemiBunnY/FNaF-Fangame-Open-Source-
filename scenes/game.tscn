@@ -1,6 +1,7 @@
-[gd_scene load_steps=31 format=3 uid="uid://csbkhlfto4htr"]
+[gd_scene load_steps=32 format=3 uid="uid://csbkhlfto4htr"]
 
 [ext_resource type="PackedScene" uid="uid://cbo6s7jdyi3k7" path="res://models ae/office.tscn" id="1_brfi8"]
+[ext_resource type="Script" path="res://scripts/game_controller.gd" id="1_xalfk"]
 [ext_resource type="PackedScene" uid="uid://cle2nqpavlwdi" path="res://scenes/player.tscn" id="2_6ouqx"]
 [ext_resource type="Texture2D" uid="uid://c5ysrwfqqwve" path="res://ui/crosshair_1.png" id="3_xnpp7"]
 [ext_resource type="Script" path="res://scripts/ui_crosshair_control.gd" id="4_tyvx8"]
@@ -79,6 +80,8 @@ _data = {
 point_count = 2
 
 [node name="Game" type="Node3D"]
+script = ExtResource("1_xalfk")
+paul_a = 12.0
 
 [node name="Office" parent="." instance=ExtResource("1_brfi8")]
 
