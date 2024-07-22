@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=3 uid="uid://csbkhlfto4htr"]
+[gd_scene load_steps=35 format=3 uid="uid://csbkhlfto4htr"]
 
 [ext_resource type="PackedScene" uid="uid://cbo6s7jdyi3k7" path="res://models ae/office.tscn" id="1_brfi8"]
 [ext_resource type="Script" path="res://scripts/game_controller.gd" id="1_xalfk"]
@@ -57,6 +57,8 @@ _data = {
 "tilts": PackedFloat32Array(0, 0)
 }
 point_count = 2
+
+[sub_resource type="BoxMesh" id="BoxMesh_vsvsd"]
 
 [sub_resource type="Curve3D" id="Curve3D_186qd"]
 _data = {
@@ -276,6 +278,11 @@ script = ExtResource("13_rvjf4")
 stream = ExtResource("16_3j5s5")
 pitch_scale = 1.2
 
+[node name="VentRotation" type="MeshInstance3D" parent="ventilation"]
+transform = Transform3D(0.15382, 0, 0, 0, 0.15382, 0, 0, 0, 0.15382, 0, 0, 0)
+visible = false
+mesh = SubResource("BoxMesh_vsvsd")
+
 [node name="stage_george" type="Marker3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.49233, 0, -3.84077)
 
@@ -292,6 +299,7 @@ stream = ExtResource("11_574ds")
 pitch_scale = 1.2
 
 [node name="animatronic_george" parent="stage_george" instance=ExtResource("13_t6l78")]
+transform = Transform3D(0.480904, 0, 0, 0, 0.480904, 0, 0, 0, 0.480904, 0, 0, 0)
 
 [node name="SpotLight3D" type="SpotLight3D" parent="stage_george"]
 transform = Transform3D(1, 0, 0, 0, 0.176123, 0.984368, 0, -0.984368, 0.176123, 0.248154, 3.96878, 0.647503)

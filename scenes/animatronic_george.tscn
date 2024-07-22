@@ -1,22 +1,25 @@
 [gd_scene load_steps=4 format=3 uid="uid://dfpn5cieqp4dm"]
 
-[ext_resource type="PackedScene" uid="uid://bp4k2efsbvws5" path="res://models ae/george_animatronic.tscn" id="1_d3tpk"]
 [ext_resource type="Script" path="res://scripts/animatronic_george_controller.gd" id="1_tg4oh"]
+[ext_resource type="PackedScene" uid="uid://bylle0xs0s5mt" path="res://models ae/george_animatronic_rig.tscn" id="2_j36w0"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_82u02"]
-size = Vector3(0.510742, 1.40027, 0.53186)
+size = Vector3(1.21844, 1.40027, 0.585846)
 
 [node name="animatronic_george" type="CharacterBody3D"]
 script = ExtResource("1_tg4oh")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0027051, 0.716056, 0.00714111)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0114637, 0.716056, -0.0617524)
 shape = SubResource("BoxShape3D_82u02")
-
-[node name="blockbench_export" parent="." instance=ExtResource("1_d3tpk")]
-transform = Transform3D(-0.5, 0, -4.37114e-08, 0, 0.5, 0, 4.37114e-08, 0, -0.5, 0, 2.29939, 0)
 
 [node name="next_movement_timer" type="Timer" parent="."]
 wait_time = 5.0
 
+[node name="george_animatronic_rig" parent="." instance=ExtResource("2_j36w0")]
+
+[connection signal="idle_animation" from="." to="george_animatronic_rig" method="_on_animatronic_george_idle_animation"]
+[connection signal="vent_animation" from="." to="george_animatronic_rig" method="_on_animatronic_george_vent_animation"]
+[connection signal="walking_animation" from="." to="george_animatronic_rig" method="_on_animatronic_george_walking_animation"]
+[connection signal="window_animation" from="." to="george_animatronic_rig" method="_on_animatronic_george_window_animation"]
 [connection signal="timeout" from="next_movement_timer" to="." method="_on_next_movement_timer_timeout"]

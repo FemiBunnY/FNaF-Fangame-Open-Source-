@@ -1,5 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://bp4k2efsbvws5"]
-
-[ext_resource type="PackedScene" uid="uid://dk8k4511t0ytn" path="res://models/george_animatronic.glb" id="1_au86d"]
-
-[node name="blockbench_export" instance=ExtResource("1_au86d")]
