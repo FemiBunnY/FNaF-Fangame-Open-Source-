@@ -5,6 +5,10 @@ signal enter_move_from_window_to_stage
 signal enter_move_from_window_to_vent
 signal enter_move_from_vent_to_office
 signal jumpscare
+signal idle_animation
+signal walk_animation
+signal window_animation
+signal vent_animation
 
 @onready var timer = $next_movement
 
@@ -17,8 +21,6 @@ signal jumpscare
 @onready var vto_follow = $"../../ventilation/ventilation to office/vto follow"
 @onready var animatronic_george = $"../../stage_george/animatronic_george"
 @onready var stw_rotation = $"../stage_rotation"
-
-#@onready var game = $"../.."
 
 var phase:int = 0
 # phase 0: stage
@@ -40,7 +42,6 @@ var lights_on:bool = true
 func _ready() -> void:
 	var game = get_node("../..")
 	animatronic_a  = game.paul_a/10
-	print(animatronic_a)
 	
 	timer.start(randf_range(5 / animatronic_a, 10 / animatronic_a))
 	rotation = stw_rotation.rotation
@@ -51,36 +52,35 @@ func _on_next_movement_timeout() -> void:
 		phase = 1
 		reparent(stw_follow)
 		emit_signal("enter_move_from_stage_to_window")
-		print("start moving from stage to window")
+		emit_signal("walk_animation")
 	elif phase == 2:
 		if player_on_ventilation_l and lights_on:
 			phase = 3
 			reparent(wts_follow)
 			emit_signal("enter_move_from_window_to_stage")
-			print("start moving from window to stage")
+			emit_signal("walk_animation")
 		elif not lights_on and player_on_ventilation_l or not lights_on and player_on_ventilation_c:
 			if animatronic_george.get_parent().name == "wtv_follow_george":
-				print("go back")
 				global_position = stage.position
 				reparent(stage)
 				phase = 0
 				timer.start(randf_range(5 / animatronic_a, 10 / animatronic_a))
-				print("start timer to next check window")
+				emit_signal("idle_animation")
 			else:
 				phase = 4
 				reparent(wtv_follow)
 				emit_signal("enter_move_from_window_to_vent")
-				print("start moving from window to ventilation")
+				emit_signal("walk_animation")
 		elif not player_on_ventilation_l:
-			print("attack")
 			emit_signal("jumpscare")
 			queue_free()
 			
 	elif phase == 5:
 		global_position = ventilation.position
+		rotation = ventilation.rotation
 		reparent(vto_follow)
 		emit_signal("enter_move_from_vent_to_office")
-		print("start moving from ventilation to office")
+		emit_signal("vent_animation")
 		
 # Booleans
 func _on_ventilation_l_body_shape_entered(_body_rid, body, _body_shape_index, _local_shape_index) -> void:
@@ -108,37 +108,33 @@ func _on_office_lights_on() -> void:
 # Signals of paths
 func _on_stw_follow_path_has_end() -> void:
 	reparent(window)
+	emit_signal("window_animation")
 	phase = 2
 	timer.start(randf_range(3 / animatronic_a, 5 / animatronic_a))
-	print("start timer to know what to do")
 
 func _on_wts_follow_path_has_end():
 	reparent(stage)
+	emit_signal("idle_animation")
 	phase = 0
 	timer.start(randf_range(5 / animatronic_a, 10 / animatronic_a))
-	print("start timer to regret to window again")
 
 func _on_wtv_follow_path_has_end():
 	reparent(ventilation)
 	phase = 5
 	timer.start(randf_range(5 / animatronic_a, 10 / animatronic_a))
-	print("entring in ventilation")
 
 func _on_vto_follow_path_has_end():
 	if not player_on_ventilation_c:
-		print("attack")
 		emit_signal("jumpscare")
 		queue_free()
 	if player_on_ventilation_c:
-		print("go back")
 		global_position = stage.position
 		reparent(stage)
 		rotation = stw_rotation.rotation
+		emit_signal("idle_animation")
 		phase = 0
 		timer.start(randf_range(5 / animatronic_a, 10 / animatronic_a))
-		print("start timer to next check window")
 
 
 func _on_game_hour_passed():
 	animatronic_a += 0.1
-	print(animatronic_a)

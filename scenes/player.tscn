@@ -96,6 +96,7 @@ wait_time = 15.0
 
 [node name="FlashlightAudio" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("2_awox4")
+volume_db = -7.429
 
 [node name="HeartbeatAudio" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_6jaf3")
@@ -108,6 +109,7 @@ stream = ExtResource("5_5lx6u")
 
 [node name="FootstepsMetalAudio" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("6_e0qtr")
+volume_db = -8.667
 
 [connection signal="timeout" from="CameraPivot/Camera/Flashlight/FlashlightBatteryTimer" to="." method="_on_flashlight_battery_timer_timeout"]
 [connection signal="animation_finished" from="CameraPivot/Camera/Flashlight/FlashlightAnimations" to="." method="_on_flashlight_animations_animation_finished"]

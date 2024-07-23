@@ -1,0 +1,112 @@
+[gd_scene load_steps=4 format=3 uid="uid://b3w330ppje16e"]
+
+[ext_resource type="PackedScene" uid="uid://bylle0xs0s5mt" path="res://models ae/george_animatronic_rig.tscn" id="1_p274g"]
+[ext_resource type="Script" path="res://scripts/menu_screen_controller.gd" id="1_xxsk1"]
+[ext_resource type="PackedScene" uid="uid://cnf6v1oprtmas" path="res://models ae/paul_animatronic_rig.tscn" id="3_bhb6n"]
+
+[node name="MenuScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+script = ExtResource("1_xxsk1")
+
+[node name="Menu" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="Menu"]
+layout_mode = 0
+offset_right = 320.0
+offset_bottom = 240.0
+
+[node name="SubViewport" type="SubViewport" parent="Menu/SubViewportContainer"]
+handle_input_locally = false
+size = Vector2i(320, 240)
+render_target_update_mode = 4
+
+[node name="3DEnviornment" type="Node3D" parent="Menu/SubViewportContainer/SubViewport"]
+
+[node name="Camera3D" type="Camera3D" parent="Menu/SubViewportContainer/SubViewport/3DEnviornment"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.623, 5.219)
+current = true
+fov = 34.3
+
+[node name="Flashlight" type="SpotLight3D" parent="Menu/SubViewportContainer/SubViewport/3DEnviornment"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.75732, 2.63013)
+
+[node name="george_animatronic_rig" parent="Menu/SubViewportContainer/SubViewport/3DEnviornment" instance=ExtResource("1_p274g")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.23092, 0, -0.285898)
+
+[node name="paul_animatronic_rig" parent="Menu/SubViewportContainer/SubViewport/3DEnviornment" instance=ExtResource("3_bhb6n")]
+transform = Transform3D(0.936513, 0, 0, 0, 0.936513, 0, 0, 0, 0.936513, 1.33693, 0, 0)
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="Menu"]
+layout_mode = 1
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -46.0
+offset_right = 46.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="GameTitle" type="Label" parent="Menu/VBoxContainer2"]
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_font_sizes/font_size = 22
+text = "Isn't 
+It a
+Pity?"
+horizontal_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="Menu/VBoxContainer2"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Menu/VBoxContainer2"]
+layout_mode = 2
+size_flags_vertical = 8
+
+[node name="PlayButton" type="Button" parent="Menu/VBoxContainer2/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+text = "Play"
+flat = true
+
+[node name="CustomButton" type="Button" parent="Menu/VBoxContainer2/VBoxContainer"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+text = "Custom
+Night"
+flat = true
+
+[node name="MadeByText" type="Label" parent="Menu"]
+modulate = Color(1, 1, 1, 0.486275)
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -64.0
+offset_top = -14.0
+offset_right = 64.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_font_sizes/font_size = 10
+text = "Made by FemiBunnY"
+
+[connection signal="button_up" from="Menu/VBoxContainer2/VBoxContainer/PlayButton" to="." method="_on_play_button_button_up"]

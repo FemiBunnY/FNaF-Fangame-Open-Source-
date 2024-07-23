@@ -2,19 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bav2o3omnj02m"
-path="res://.godot/imported/paul_animatronic_Image_0.png-006440c7bfd6f449568493fb764f8671.ctex"
+uid="uid://cjvo8ussuqays"
+path="res://.godot/imported/0016.jpg-5485be304d7810de6e16c6c5369a6838.ctex"
 metadata={
 "vram_texture": false
-}
-generator_parameters={
-"md5": "d1976d2ed97c3a0b69727cdd44184fca"
 }
 
 [deps]
 
-source_file="res://models/paul_animatronic_Image_0.png"
-dest_files=["res://.godot/imported/paul_animatronic_Image_0.png-006440c7bfd6f449568493fb764f8671.ctex"]
+source_file="res://animations/sprites/paul/0016.jpg"
+dest_files=["res://.godot/imported/0016.jpg-5485be304d7810de6e16c6c5369a6838.ctex"]
 
 [params]
 
@@ -24,7 +21,7 @@ compress/lossy_quality=0.7
 compress/hdr_compression=1
 compress/normal_map=0
 compress/channel_pack=0
-mipmaps/generate=true
+mipmaps/generate=false
 mipmaps/limit=-1
 roughness/mode=0
 roughness/src_normal=""
@@ -34,4 +31,4 @@ process/normal_map_invert_y=false
 process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
-detect_3d/compress_to=0
+detect_3d/compress_to=1

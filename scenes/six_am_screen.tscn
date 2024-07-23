@@ -1,0 +1,66 @@
+[gd_scene load_steps=4 format=3 uid="uid://cs6fc2np7h6ap"]
+
+[ext_resource type="Script" path="res://scripts/six_am_controller.gd" id="1_rq0s1"]
+[ext_resource type="FontFile" uid="uid://drldanni5u5vd" path="res://fonts/DS-DIGIB.TTF" id="2_5wfxa"]
+[ext_resource type="AudioStream" uid="uid://dcw087lngcu0f" path="res://sounds/digital_clock.ogg" id="3_b272s"]
+
+[node name="SixAMScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_rq0s1")
+
+[node name="VerticalContiner" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -31.0
+offset_top = -20.0
+offset_right = 31.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="SixAMLabel" type="Label" parent="VerticalContiner"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_5wfxa")
+theme_override_font_sizes/font_size = 59
+text = "6:00 AM"
+
+[node name="NextBlinkTimer" type="Timer" parent="VerticalContiner/SixAMLabel"]
+wait_time = 0.25
+autostart = true
+
+[node name="WellDoneLabel" type="Label" parent="VerticalContiner"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_fonts/font = ExtResource("2_5wfxa")
+theme_override_font_sizes/font_size = 20
+text = "Well Done!"
+
+[node name="FadeOutEffect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="FadeOutTimer" type="Timer" parent="FadeOutEffect"]
+wait_time = 3.0
+
+[node name="DigitalClockAudio" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_b272s")
+autoplay = true
+
+[connection signal="timeout" from="VerticalContiner/SixAMLabel/NextBlinkTimer" to="." method="_on_next_blink_timer_timeout"]
+[connection signal="timeout" from="FadeOutEffect/FadeOutTimer" to="." method="_on_fade_out_timer_timeout"]

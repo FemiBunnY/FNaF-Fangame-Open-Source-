@@ -11,13 +11,14 @@ const SPEED:int = 5
 
 var gravity: float = ProjectSettings.get_setting("physics/3d/default_gravity")
 var speed:float = 1
-var sensitivity:float = 0.015
+var sensitivity:float # = 0.015
 
 var is_crouching:bool = false
 var is_flashlight_on:bool = false
 var player_on_vent:bool = false
 var is_activated_flashlight:bool = false
 var can_use_flashlight:bool = true
+var mouse_visible:bool = false
 
 @onready var camera_pivot = $CameraPivot
 @onready var camera = $CameraPivot/Camera
@@ -36,22 +37,32 @@ var can_use_flashlight:bool = true
 @onready var battery_timer = $CameraPivot/Camera/Flashlight/FlashlightBatteryTimer
 @onready var flashlight_battery = $"../UI/FlashlightBattery"
 @onready var flashlight_animations = $CameraPivot/Camera/Flashlight/FlashlightAnimations
+@onready var sensitivity_ui = $"../UI/Sensitivity"
+@onready var sensitivity_scroller = $"../UI/Sensitivity/VBoxContainer/SensitivityScroller"
 
 func _ready() -> void:
 	black_screen.set_color(Color(0,0,0,0))
 	flashlight_animations.play("RESET")
-
+	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	sensitivity_ui.visible = false
+	sensitivity = sensitivity_scroller.value/1000
+	
 func _input(event:InputEvent) -> void:
-	if event is InputEventMouseButton:
-		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
-	elif event.is_action_pressed("ui_cancel"):
+	if event.is_action_pressed("ui_cancel") and not mouse_visible:
 		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+		sensitivity_ui.visible = true
+		mouse_visible = true
+	elif event.is_action_pressed("ui_cancel") and mouse_visible:
+		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+		sensitivity_ui.visible = false
+		mouse_visible = false
+		
 	if Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
 		if event is InputEventMouseMotion:
 			camera_pivot.rotate_y(-event.relative.x * sensitivity)
 			camera.rotate_x(-event.relative.y * sensitivity)
 			camera.rotation.x = clamp(camera.rotation.x, deg_to_rad(-60), deg_to_rad(60))
-
+			
 func _physics_process(delta:float) -> void:
 	if is_activated_flashlight:
 		flashlight_battery.size = Vector2(9, 34 * (battery_timer.time_left/120))
@@ -65,11 +76,11 @@ func _physics_process(delta:float) -> void:
 		
 	if is_crouching == true:
 		camera.position.y -= 1.5
-		speed = 0.3
+		speed = 0.4
 		up_collider.disabled = true
 	elif is_crouching == false and not crouch_shapecast.is_colliding():
 		camera.position.y += 1.5
-		speed = 1
+		speed = 1.2
 		up_collider.disabled = false
 		breath.stop()
 		if heartbeat_audio.playing == true:
@@ -115,12 +126,12 @@ func _physics_process(delta:float) -> void:
 	var direction = (camera_pivot.transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
 	
 	if direction:
-		velocity.x = lerp(velocity.x, direction.x * SPEED * speed, 0.6)
-		velocity.z = lerp(velocity.z, direction.z * SPEED * speed, 0.6)
+		velocity.x = direction.x * SPEED * speed
+		velocity.z = direction.z * SPEED * speed
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 		velocity.z = move_toward(velocity.z, 0, SPEED)
-	
+		
 	if velocity:
 		if floor_raycast.is_colliding() and floor_raycast.get_collider().is_in_group("concrete"):
 			if is_crouching:
@@ -189,3 +200,7 @@ func _on_flashlight_animations_animation_finished(_anim_name):
 	flashlight.light_energy = 0
 	battery_timer.paused = true
 	emit_signal("flashlight_off")
+
+
+func _on_sensitivity_scroller_drag_ended(_value_changed):
+	sensitivity = sensitivity_scroller.value/1000

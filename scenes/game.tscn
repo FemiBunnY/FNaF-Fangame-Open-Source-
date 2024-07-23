@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=3 uid="uid://csbkhlfto4htr"]
+[gd_scene load_steps=78 format=3 uid="uid://csbkhlfto4htr"]
 
 [ext_resource type="PackedScene" uid="uid://cbo6s7jdyi3k7" path="res://models ae/office.tscn" id="1_brfi8"]
 [ext_resource type="Script" path="res://scripts/game_controller.gd" id="1_xalfk"]
@@ -13,14 +13,191 @@
 [ext_resource type="PackedScene" uid="uid://dctkqstrbxv2m" path="res://scenes/animatronic.tscn" id="9_0bsv3"]
 [ext_resource type="Script" path="res://scripts/wtv_follow_controller.gd" id="9_co0t4"]
 [ext_resource type="Script" path="res://scripts/wts_follow_controller.gd" id="9_s5d5o"]
+[ext_resource type="Texture2D" uid="uid://bn3u2l8ec83er" path="res://animations/sprites/paul/0001.jpg" id="10_ksafl"]
+[ext_resource type="Texture2D" uid="uid://dsv02dr226es" path="res://animations/sprites/george/0001.jpg" id="10_plbpk"]
 [ext_resource type="AudioStream" uid="uid://cuw7it63v8elr" path="res://sounds/footsteps_animatronic.ogg" id="11_574ds"]
+[ext_resource type="Texture2D" uid="uid://dcq6b47xc4wma" path="res://animations/sprites/paul/0002.jpg" id="11_glaom"]
 [ext_resource type="Script" path="res://scripts/vto_follow_controller.gd" id="11_kd046"]
+[ext_resource type="Texture2D" uid="uid://cexqoxaxacsdj" path="res://animations/sprites/george/0002.jpg" id="11_vs3re"]
+[ext_resource type="Texture2D" uid="uid://fbwalycls72j" path="res://animations/sprites/paul/0003.jpg" id="12_d3d21"]
+[ext_resource type="Texture2D" uid="uid://dknmm80ed2jkn" path="res://animations/sprites/george/0003.jpg" id="12_mjfo4"]
+[ext_resource type="Texture2D" uid="uid://c52ebsq5mjkje" path="res://animations/sprites/george/0004.jpg" id="13_62blb"]
+[ext_resource type="Texture2D" uid="uid://duq8dy6qm1blg" path="res://animations/sprites/paul/0004.jpg" id="13_bumrl"]
 [ext_resource type="Script" path="res://scripts/vto_follow_george_controller.gd" id="13_rvjf4"]
 [ext_resource type="PackedScene" uid="uid://dfpn5cieqp4dm" path="res://scenes/animatronic_george.tscn" id="13_t6l78"]
+[ext_resource type="Texture2D" uid="uid://vesaf4427hy8" path="res://animations/sprites/paul/0005.jpg" id="14_bpc3l"]
+[ext_resource type="Texture2D" uid="uid://djbafhyglhc3m" path="res://animations/sprites/george/0005.jpg" id="14_g1ava"]
 [ext_resource type="Script" path="res://scripts/stw_follow_george_controller.gd" id="14_nsx07"]
+[ext_resource type="Texture2D" uid="uid://ckf3clw4kygin" path="res://animations/sprites/george/0006.jpg" id="15_m1j5o"]
+[ext_resource type="Texture2D" uid="uid://bwnqqv731l1cj" path="res://animations/sprites/paul/0006.jpg" id="15_ylig8"]
 [ext_resource type="AudioStream" uid="uid://i0doesv3rfji" path="res://sounds/moving_vent_animatronic.ogg" id="16_3j5s5"]
+[ext_resource type="Texture2D" uid="uid://bdocrlot5uq8e" path="res://animations/sprites/paul/0007.jpg" id="16_6q7xs"]
+[ext_resource type="Texture2D" uid="uid://bpj2pw3ivcqaj" path="res://animations/sprites/george/0007.jpg" id="16_7clc4"]
 [ext_resource type="Script" path="res://scripts/wts_follow_george_controller.gd" id="16_oj40g"]
 [ext_resource type="Script" path="res://scripts/wtv_follow_george_controller.gd" id="17_1h7c4"]
+[ext_resource type="Texture2D" uid="uid://b5aipcy416x0e" path="res://animations/sprites/george/0008.jpg" id="17_47j5f"]
+[ext_resource type="Texture2D" uid="uid://bkkmvbmgux00x" path="res://animations/sprites/paul/0008.jpg" id="17_irc8p"]
+[ext_resource type="Texture2D" uid="uid://gql8nchfujys" path="res://animations/sprites/george/0009.jpg" id="18_mbtxn"]
+[ext_resource type="Texture2D" uid="uid://dhhk3gddspw0o" path="res://animations/sprites/paul/0009.jpg" id="18_w064x"]
+[ext_resource type="Texture2D" uid="uid://2xnwb3epuhnf" path="res://animations/sprites/george/0010.jpg" id="19_7y17f"]
+[ext_resource type="Texture2D" uid="uid://bhjyxyt87y2el" path="res://animations/sprites/paul/0010.jpg" id="19_gvoh1"]
+[ext_resource type="Texture2D" uid="uid://21f1rsoa24lg" path="res://animations/sprites/george/0011.jpg" id="20_5bqj1"]
+[ext_resource type="Texture2D" uid="uid://c4waaajs0eecs" path="res://animations/sprites/paul/0011.jpg" id="20_nfjel"]
+[ext_resource type="Texture2D" uid="uid://mkor3mo5yunb" path="res://animations/sprites/paul/0012.jpg" id="21_a2rem"]
+[ext_resource type="Texture2D" uid="uid://b8x5qwd7bh8nn" path="res://animations/sprites/george/0012.jpg" id="21_csp8q"]
+[ext_resource type="Texture2D" uid="uid://c7t55grm5nsv1" path="res://animations/sprites/paul/0013.jpg" id="22_7fi52"]
+[ext_resource type="Texture2D" uid="uid://bsvl843s8syrn" path="res://animations/sprites/george/0013.jpg" id="22_js3hk"]
+[ext_resource type="Texture2D" uid="uid://v2f4bsfuj2t4" path="res://animations/sprites/george/0014.jpg" id="23_1jpc6"]
+[ext_resource type="Texture2D" uid="uid://rpf0m1vlqotv" path="res://animations/sprites/paul/0014.jpg" id="23_1ysro"]
+[ext_resource type="Texture2D" uid="uid://ci0l8y36ratdl" path="res://animations/sprites/paul/0015.jpg" id="24_m1bc2"]
+[ext_resource type="Texture2D" uid="uid://byigg24ub301a" path="res://animations/sprites/george/0015.jpg" id="24_vxvuf"]
+[ext_resource type="Texture2D" uid="uid://cjvo8ussuqays" path="res://animations/sprites/paul/0016.jpg" id="25_ayi4n"]
+[ext_resource type="Texture2D" uid="uid://04iq2svsd1m1" path="res://animations/sprites/george/0016.jpg" id="25_okvms"]
+[ext_resource type="Texture2D" uid="uid://voksw2w6oway" path="res://animations/sprites/george/0017.jpg" id="26_05cuf"]
+[ext_resource type="Texture2D" uid="uid://d4gc5auqccwqt" path="res://animations/sprites/paul/0017.jpg" id="26_q8vr6"]
+[ext_resource type="Texture2D" uid="uid://bqji2iseahg1s" path="res://animations/sprites/george/0018.jpg" id="27_37xmk"]
+[ext_resource type="Texture2D" uid="uid://qaxsi46he740" path="res://animations/sprites/paul/0018.jpg" id="27_u23gh"]
+[ext_resource type="Texture2D" uid="uid://buvl1oddthutx" path="res://animations/sprites/paul/0019.jpg" id="28_qef40"]
+[ext_resource type="Texture2D" uid="uid://c1u0fo14e6onl" path="res://animations/sprites/george/0019.jpg" id="28_u7r0t"]
+[ext_resource type="Texture2D" uid="uid://ds7rs674p51jk" path="res://animations/sprites/george/0020.jpg" id="29_6ghny"]
+[ext_resource type="Texture2D" uid="uid://b1xygr2jusavu" path="res://animations/sprites/paul/0020.jpg" id="29_v1ae8"]
+[ext_resource type="AudioStream" uid="uid://dn2wvlfthmgc" path="res://sounds/jumpscare.ogg" id="30_8l30n"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_vetxk"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("10_plbpk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_vs3re")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_mjfo4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_62blb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_g1ava")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_m1j5o")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_7clc4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17_47j5f")
+}, {
+"duration": 1.0,
+"texture": ExtResource("18_mbtxn")
+}, {
+"duration": 1.0,
+"texture": ExtResource("19_7y17f")
+}, {
+"duration": 1.0,
+"texture": ExtResource("20_5bqj1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("21_csp8q")
+}, {
+"duration": 1.0,
+"texture": ExtResource("22_js3hk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("23_1jpc6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("24_vxvuf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("25_okvms")
+}, {
+"duration": 1.0,
+"texture": ExtResource("26_05cuf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("27_37xmk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("28_u7r0t")
+}, {
+"duration": 1.0,
+"texture": ExtResource("29_6ghny")
+}],
+"loop": false,
+"name": &"jumpscare",
+"speed": 30.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_6tr2u"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("10_ksafl")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_glaom")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_d3d21")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_bumrl")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_bpc3l")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_ylig8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_6q7xs")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17_irc8p")
+}, {
+"duration": 1.0,
+"texture": ExtResource("18_w064x")
+}, {
+"duration": 1.0,
+"texture": ExtResource("19_gvoh1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("20_nfjel")
+}, {
+"duration": 1.0,
+"texture": ExtResource("21_a2rem")
+}, {
+"duration": 1.0,
+"texture": ExtResource("22_7fi52")
+}, {
+"duration": 1.0,
+"texture": ExtResource("23_1ysro")
+}, {
+"duration": 1.0,
+"texture": ExtResource("24_m1bc2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("25_ayi4n")
+}, {
+"duration": 1.0,
+"texture": ExtResource("26_q8vr6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("27_u23gh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("28_qef40")
+}, {
+"duration": 1.0,
+"texture": ExtResource("29_v1ae8")
+}],
+"loop": false,
+"name": &"jumpscare",
+"speed": 30.0
+}]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_t6xmm"]
 
@@ -86,12 +263,8 @@ point_count = 2
 [node name="Game" type="Node3D"]
 script = ExtResource("1_xalfk")
 paul_a = 12.0
-tv_a = 5.0
-
-[node name="Office" parent="." instance=ExtResource("1_brfi8")]
-
-[node name="Player" parent="." instance=ExtResource("2_6ouqx")]
-transform = Transform3D(0.501984, 0, 0, 0, 0.501984, 0, 0, 0, 0.501984, 0, 0.65532, 0)
+george_a = 10.5
+tv_a = 5.8
 
 [node name="UI" type="Control" parent="."]
 layout_mode = 3
@@ -188,6 +361,76 @@ horizontal_alignment = 2
 [node name="TenMinutes" type="Timer" parent="UI/Hour"]
 wait_time = 8.0
 
+[node name="Sensitivity" type="Control" parent="UI"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="UI/Sensitivity"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/Sensitivity"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -92.0
+offset_top = -51.0
+offset_right = 92.0
+offset_bottom = -6.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="SensitivityLabel" type="Label" parent="UI/Sensitivity/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Sensitivity"
+
+[node name="SensitivityScroller" type="HSlider" parent="UI/Sensitivity/VBoxContainer"]
+layout_mode = 2
+value = 15.0
+
+[node name="GeorgeJumpscareAnimation" type="AnimatedSprite2D" parent="UI"]
+visible = false
+position = Vector2(262.5, 256)
+scale = Vector2(1.64063, 2.13333)
+sprite_frames = SubResource("SpriteFrames_vetxk")
+animation = &"jumpscare"
+frame = 19
+frame_progress = 1.0
+
+[node name="JumpscareAudio" type="AudioStreamPlayer" parent="UI/GeorgeJumpscareAnimation"]
+stream = ExtResource("30_8l30n")
+volume_db = -19.142
+
+[node name="PaulJumpscareAnimation" type="AnimatedSprite2D" parent="UI"]
+visible = false
+position = Vector2(262.5, 259.333)
+scale = Vector2(1.64063, 2.25797)
+sprite_frames = SubResource("SpriteFrames_6tr2u")
+animation = &"jumpscare"
+frame = 19
+frame_progress = 1.0
+
+[node name="JumpscareAudio" type="AudioStreamPlayer" parent="UI/PaulJumpscareAnimation"]
+stream = ExtResource("30_8l30n")
+volume_db = -19.142
+
+[node name="Office" parent="." instance=ExtResource("1_brfi8")]
+
+[node name="Player" parent="." instance=ExtResource("2_6ouqx")]
+transform = Transform3D(0.501984, 0, 0, 0, 0.501984, 0, 0, 0, 0.501984, 0, 0.65532, 0)
+
 [node name="Spotlight L" type="SpotLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.33407, 0.942548, 0, -0.942548, 0.33407, -4.14851, 3.31499, -3.247)
 
@@ -222,6 +465,7 @@ script = ExtResource("6_7r8sm")
 
 [node name="STWFootstepsAudio" type="AudioStreamPlayer3D" parent="stage/stage to window/stw follow"]
 stream = ExtResource("11_574ds")
+volume_db = -12.0
 
 [node name="Animatronic" parent="stage" instance=ExtResource("9_0bsv3")]
 
@@ -237,12 +481,13 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.74233, 0, -0.944725)
 curve = SubResource("Curve3D_2ii4c")
 
 [node name="wtv follow" type="PathFollow3D" parent="window/window to ventilation"]
-transform = Transform3D(0.0153689, 0, -0.999876, 0, 1, 0, 0.999876, 0, 0.0153689, -0.0211468, 0, 0.0127858)
+transform = Transform3D(0.0153689, 0, -0.999875, 0, 1, 0, 0.999875, 0, 0.0153689, -0.0211468, 0, 0.0127858)
 loop = false
 script = ExtResource("9_co0t4")
 
 [node name="WTVFootstepsAudio" type="AudioStreamPlayer3D" parent="window/window to ventilation/wtv follow"]
 stream = ExtResource("11_574ds")
+volume_db = -12.0
 
 [node name="window to stage" type="Path3D" parent="window"]
 curve = SubResource("Curve3D_2wbm4")
@@ -254,6 +499,7 @@ script = ExtResource("9_s5d5o")
 
 [node name="WTSFootstepsAudio" type="AudioStreamPlayer3D" parent="window/window to stage/wts follow"]
 stream = ExtResource("11_574ds")
+volume_db = -12.0
 
 [node name="ventilation" type="Marker3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0262427, 1.15946, -5.11726)
@@ -296,6 +542,7 @@ script = ExtResource("14_nsx07")
 
 [node name="STWFootstepsAudio" type="AudioStreamPlayer3D" parent="stage_george/stage_to_window/stw_follow_george"]
 stream = ExtResource("11_574ds")
+volume_db = -16.0
 pitch_scale = 1.2
 
 [node name="animatronic_george" parent="stage_george" instance=ExtResource("13_t6l78")]
@@ -324,6 +571,7 @@ script = ExtResource("16_oj40g")
 
 [node name="WTSFootstepsAudio" type="AudioStreamPlayer3D" parent="window_george/window_to_stage/wts_follow_george"]
 stream = ExtResource("11_574ds")
+volume_db = -16.0
 pitch_scale = 1.2
 
 [node name="window_to_ventilation" type="Path3D" parent="window_george"]
@@ -336,6 +584,7 @@ script = ExtResource("17_1h7c4")
 
 [node name="WTVFootstepsAudio" type="AudioStreamPlayer3D" parent="window_george/window_to_ventilation/wtv_follow_george"]
 stream = ExtResource("11_574ds")
+volume_db = -16.0
 pitch_scale = 1.2
 
 [connection signal="hour_passed" from="." to="stage/stage to window/stw follow" method="_on_game_hour_passed"]
@@ -348,6 +597,10 @@ pitch_scale = 1.2
 [connection signal="hour_passed" from="." to="stage_george/animatronic_george" method="_on_game_hour_passed"]
 [connection signal="hour_passed" from="." to="window_george/window_to_stage/wts_follow_george" method="_on_game_hour_passed"]
 [connection signal="hour_passed" from="." to="window_george/window_to_ventilation/wtv_follow_george" method="_on_game_hour_passed"]
+[connection signal="one_hour" from="UI" to="." method="_on_ui_one_hour"]
+[connection signal="timeout" from="UI/WaitAfterJumpscare" to="UI" method="_on_wait_after_jumpscare_timeout"]
+[connection signal="timeout" from="UI/Hour/TenMinutes" to="UI" method="_on_ten_minutes_timeout"]
+[connection signal="drag_ended" from="UI/Sensitivity/VBoxContainer/SensitivityScroller" to="Player" method="_on_sensitivity_scroller_drag_ended"]
 [connection signal="lights_off" from="Office" to="stage/Animatronic" method="_on_office_lights_off"]
 [connection signal="lights_off" from="Office" to="stage_george/animatronic_george" method="_on_office_lights_off"]
 [connection signal="lights_on" from="Office" to="stage/Animatronic" method="_on_office_lights_on"]
@@ -358,9 +611,6 @@ pitch_scale = 1.2
 [connection signal="interaction" from="Player" to="Office" method="_on_player_interaction"]
 [connection signal="interaction_tv" from="Player" to="Office" method="_on_player_interaction_tv"]
 [connection signal="notinteracting" from="Player" to="UI" method="_on_player_notinteracting"]
-[connection signal="one_hour" from="UI" to="." method="_on_ui_one_hour"]
-[connection signal="timeout" from="UI/WaitAfterJumpscare" to="UI" method="_on_wait_after_jumpscare_timeout"]
-[connection signal="timeout" from="UI/Hour/TenMinutes" to="UI" method="_on_ten_minutes_timeout"]
 [connection signal="body_shape_entered" from="Ventilation C" to="Player" method="_on_ventilation_c_body_shape_entered"]
 [connection signal="body_shape_entered" from="Ventilation C" to="stage/Animatronic" method="_on_ventilation_c_body_shape_entered"]
 [connection signal="body_shape_entered" from="Ventilation C" to="stage_george/animatronic_george" method="_on_ventilation_c_body_shape_entered"]

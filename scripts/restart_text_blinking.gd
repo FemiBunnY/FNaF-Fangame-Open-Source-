@@ -4,11 +4,13 @@ func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 
 func _on_next_blink_timer_timeout():
-	if visible:
-		visible = false
-	elif not visible:
-		visible = true
+	if modulate == Color(1,1,1,1):
+		modulate = Color(1,1,1,0)
+	elif modulate == Color(1,1,1,0):
+		modulate = Color(1,1,1,1)
 
 func _input(_event):
-	if Input.is_action_just_pressed("ui_accept"):
+	if Input.is_key_pressed(KEY_R):
 		get_tree().change_scene_to_file("res://scenes/gameshader.tscn")
+	elif Input.is_key_pressed(KEY_E):
+		get_tree().change_scene_to_file("res://scenes/menu_screen.tscn")

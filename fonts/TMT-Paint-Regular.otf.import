@@ -2,13 +2,13 @@
 
 importer="font_data_dynamic"
 type="FontFile"
-uid="uid://wlpwvus150xx"
-path="res://.godot/imported/TENOCLOCK-Regular.ttf-7b8ba78aa120552dbc7827a0d0aa8bff.fontdata"
+uid="uid://bpthdyavmnxyq"
+path="res://.godot/imported/TMT-Paint-Regular.otf-59f1f5bd10b6d1af676da9fe43dd082d.fontdata"
 
 [deps]
 
-source_file="res://fonts/TENOCLOCK-Regular.ttf"
-dest_files=["res://.godot/imported/TENOCLOCK-Regular.ttf-7b8ba78aa120552dbc7827a0d0aa8bff.fontdata"]
+source_file="res://fonts/TMT-Paint-Regular.otf"
+dest_files=["res://.godot/imported/TMT-Paint-Regular.otf-59f1f5bd10b6d1af676da9fe43dd082d.fontdata"]
 
 [params]
 

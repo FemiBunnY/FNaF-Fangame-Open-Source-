@@ -50,6 +50,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.194012, 0)
 light_color = Color(0.741784, 0.926065, 0.922469, 1)
 omni_attenuation = 0.707107
 
+[node name="Chair_17_001" parent="." index="16"]
+transform = Transform3D(0.173253, 0, -0.830206, 0, 0.848092, 0, 0.830206, 0, 0.173253, -1.61222, 0.381311, 1.40595)
+
 [node name="Paredes y suelo" type="StaticBody3D" parent="." index="21"]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Paredes y suelo" index="0"]
@@ -89,15 +92,15 @@ transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 4.6494
 shape = SubResource("BoxShape3D_w27ys")
 
 [node name="CollisionShape3D19" type="CollisionShape3D" parent="Paredes y suelo" index="9"]
-transform = Transform3D(-4.37114e-08, -1, 4.37114e-08, 0, -4.37114e-08, -1, 1, -4.37114e-08, 1.91069e-15, 2.12716, 3.56633, 0.279723)
+transform = Transform3D(-4.37114e-08, -1, 4.37114e-08, 0, -4.37114e-08, -1, 1, -4.37114e-08, 1.91069e-15, 2.08663, 3.56234, 0.282647)
 shape = SubResource("BoxShape3D_w27ys")
 
 [node name="CollisionShape3D20" type="CollisionShape3D" parent="Paredes y suelo" index="10"]
-transform = Transform3D(-4.37114e-08, -1, 4.37114e-08, 0, -4.37114e-08, -1, 1, -4.37114e-08, 1.91069e-15, -2.12069, 3.56633, 0.279723)
+transform = Transform3D(-4.37114e-08, -1, 4.37114e-08, 0, -4.37114e-08, -1, 1, -4.37114e-08, 1.91069e-15, -2.0795, 3.5613, 0.280346)
 shape = SubResource("BoxShape3D_w27ys")
 
 [node name="CollisionShape3D21" type="CollisionShape3D" parent="Paredes y suelo" index="11"]
-transform = Transform3D(-1, 8.74228e-08, -3.82137e-15, 0, -4.37114e-08, -1, -8.74228e-08, -1, 4.37114e-08, -0.00393963, 3.56633, -2.69982)
+transform = Transform3D(-1, 8.74228e-08, -3.82137e-15, 0, -4.37114e-08, -1, -8.74228e-08, -1, 4.37114e-08, -0.00163716, 3.56744, -2.68001)
 shape = SubResource("BoxShape3D_w27ys")
 
 [node name="CollisionShape3D13" type="CollisionShape3D" parent="Paredes y suelo" index="12"]
@@ -185,42 +188,45 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.16153, -0.149611, 2.24329)
 shape = SubResource("BoxShape3D_gxgfp")
 
 [node name="CollisionShape3D2" type="CollisionShape3D" parent="mesa 2" index="1"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.673672, -0.169482, 2.4755)
+transform = Transform3D(0.673632, 0, -0.739067, 0, 1, 0, 0.739067, 0, 0.673632, -0.0746782, -0.169482, 2.73673)
 shape = SubResource("BoxShape3D_gxgfp")
 
 [node name="CollisionShape3D3" type="CollisionShape3D" parent="mesa 2" index="2"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.14132, 0.678422, 1.59912)
+transform = Transform3D(0.736227, 0, 0.676735, 0, 1, 0, -0.676735, 0, 0.736227, -2.28056, 0.678422, 1.86964)
 shape = SubResource("BoxShape3D_gxgfp")
 
 [node name="switch" parent="." index="26" instance=ExtResource("2_tlbrg")]
 transform = Transform3D(-9.58853e-09, -0.21936, -9.58853e-09, 0, -9.58853e-09, 0.21936, -0.21936, 9.58853e-09, 4.19128e-16, 1.97609, 1.14881, 1.25285)
 
 [node name="SwitchAudioPlayer1" type="AudioStreamPlayer3D" parent="." index="27"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.88816, 1.23228, 1.23953)
+transform = Transform3D(0.120276, 0, 0.992741, 0, 1, 0, -0.992741, 0, 0.120276, 1.88816, 1.23228, 1.23953)
 stream = ExtResource("3_cogd2")
-emission_angle_enabled = true
+volume_db = -20.0
 
 [node name="SwitchAudioPlayer2" type="AudioStreamPlayer3D" parent="." index="28"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.88816, 1.09731, 1.23953)
 stream = ExtResource("4_r75lf")
+volume_db = -30.0
 
 [node name="TV" parent="." index="29" instance=ExtResource("6_nheev")]
 transform = Transform3D(0.998222, 0, -0.0596026, 0, 1, 0, 0.0596026, 0, 0.998222, -0.693372, 0.694681, 2.00207)
 
 [node name="TVClickOnAudio" type="AudioStreamPlayer3D" parent="TV" index="2"]
 stream = ExtResource("8_3oohm")
+volume_db = -32.0
 
 [node name="TVClickOffAudio" type="AudioStreamPlayer3D" parent="TV" index="3"]
 stream = ExtResource("9_qyun1")
+volume_db = -30.0
 
 [node name="TVNoiseAudio" type="AudioStreamPlayer3D" parent="TV" index="4"]
 stream = ExtResource("10_av1ol")
-volume_db = -5.0
+volume_db = -33.0
 
 [node name="VentilationAmbienceAudio" type="AudioStreamPlayer3D" parent="." index="30"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.14217, -3.55486)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.14217, -4.29071)
 stream = ExtResource("11_dn8q0")
-volume_db = -15.0
+volume_db = -35.0
 autoplay = true
 
 [connection signal="start_timer" from="." to="TV" method="_on_offic_start_timer"]

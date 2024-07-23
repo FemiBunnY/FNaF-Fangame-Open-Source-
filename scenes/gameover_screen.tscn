@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://c7fhehctw0irb"]
 
 [ext_resource type="Texture2D" uid="uid://cp7l7p1t8q5uv" path="res://ui/scream.png" id="1_a4csk"]
-[ext_resource type="FontFile" uid="uid://wlpwvus150xx" path="res://fonts/TENOCLOCK-Regular.ttf" id="1_noixl"]
+[ext_resource type="FontFile" uid="uid://bdnab7a1136l6" path="res://fonts/HelpMe.ttf" id="2_stk13"]
 [ext_resource type="Script" path="res://scripts/restart_text_blinking.gd" id="2_wa78u"]
 [ext_resource type="AudioStream" uid="uid://ca05hbfdsmt2d" path="res://sounds/death.ogg" id="4_v0jyn"]
 
@@ -41,17 +41,29 @@ grow_vertical = 2
 layout_mode = 2
 size_flags_horizontal = 4
 theme_override_colors/font_color = Color(0.63374, 0.0829661, 4.81308e-08, 1)
-theme_override_fonts/font = ExtResource("1_noixl")
-theme_override_font_sizes/font_size = 60
+theme_override_fonts/font = ExtResource("2_stk13")
+theme_override_font_sizes/font_size = 45
 text = "Game Over"
 
 [node name="RestartText" type="Label" parent="VerticalContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
-text = "Press \"Space\" to restart."
+theme_override_font_sizes/font_size = 12
+text = "Press \"R\" to restart."
 script = ExtResource("2_wa78u")
 
 [node name="NextBlinkTimer" type="Timer" parent="VerticalContainer/RestartText"]
+wait_time = 0.2
+autostart = true
+
+[node name="RestartText2" type="Label" parent="VerticalContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 12
+text = "Press \"E\" to go back to the menu."
+script = ExtResource("2_wa78u")
+
+[node name="NextBlinkTimer" type="Timer" parent="VerticalContainer/RestartText2"]
 wait_time = 0.2
 autostart = true
 
@@ -61,3 +73,4 @@ volume_db = -15.0
 autoplay = true
 
 [connection signal="timeout" from="VerticalContainer/RestartText/NextBlinkTimer" to="VerticalContainer/RestartText" method="_on_next_blink_timer_timeout"]
+[connection signal="timeout" from="VerticalContainer/RestartText2/NextBlinkTimer" to="VerticalContainer/RestartText2" method="_on_next_blink_timer_timeout"]

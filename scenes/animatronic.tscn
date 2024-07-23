@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://dctkqstrbxv2m"]
 
 [ext_resource type="Script" path="res://scripts/animatronic_controller.gd" id="1_5353u"]
-[ext_resource type="PackedScene" uid="uid://l3vrmlakqb81" path="res://models/paul_animatronic.glb" id="2_brrej"]
+[ext_resource type="PackedScene" uid="uid://cnf6v1oprtmas" path="res://models ae/paul_animatronic_rig.tscn" id="2_lsqho"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_gxw18"]
 size = Vector3(1.48773, 3.15479, 1.36377)
@@ -14,10 +14,13 @@ script = ExtResource("1_5353u")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00796508, 1.60864, 0.0998535)
 shape = SubResource("BoxShape3D_gxw18")
 
-[node name="paul_animatronic" parent="." instance=ExtResource("2_brrej")]
-transform = Transform3D(-1, 0, 8.56817e-08, 0, 1, 0, -8.56817e-08, 0, -1, 0, 0, 0)
-
 [node name="next_movement" type="Timer" parent="."]
 wait_time = 5.0
 
+[node name="paul_animatronic_rig" parent="." instance=ExtResource("2_lsqho")]
+
+[connection signal="idle_animation" from="." to="paul_animatronic_rig" method="_on_animatronic_idle_animation"]
+[connection signal="vent_animation" from="." to="paul_animatronic_rig" method="_on_animatronic_vent_animation"]
+[connection signal="walk_animation" from="." to="paul_animatronic_rig" method="_on_animatronic_walk_animation"]
+[connection signal="window_animation" from="." to="paul_animatronic_rig" method="_on_animatronic_window_animation"]
 [connection signal="timeout" from="next_movement" to="." method="_on_next_movement_timeout"]

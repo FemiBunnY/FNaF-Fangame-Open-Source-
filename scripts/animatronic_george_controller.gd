@@ -54,7 +54,6 @@ func _on_next_movement_timer_timeout() -> void:
 		reparent(stw_follow)
 	elif phase == 2:
 		if player_on_vent_r and lights_on:
-			print("go to stage")
 			phase = 3
 			reparent(wts_follow)
 			emit_signal("start_move_from_window_to_stage")
@@ -68,7 +67,6 @@ func _on_next_movement_timer_timeout() -> void:
 				rotation = stw_rotation.rotation
 				timer.start(randf_range(5 / animatronic_a, 12 / animatronic_a))
 			else:
-				print("go to vent")
 				phase = 4
 				reparent(wtv_follow)
 				emit_signal("start_move_from_window_to_vent")
@@ -103,10 +101,10 @@ func _on_wtv_follow_george_path_has_end() -> void:
 
 func _on_vto_follow_george_path_has_end() -> void:
 	if player_on_vent_c:
-		rotation = stw_rotation.rotation
-		phase = 0
 		global_position = stage.position
 		reparent(stage)
+		rotation = stw_rotation.rotation
+		phase = 0
 		emit_signal("idle_animation")
 		timer.start(randf_range(5 / animatronic_a, 12 / animatronic_a))
 	elif not player_on_vent_c:

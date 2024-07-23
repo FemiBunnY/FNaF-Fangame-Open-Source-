@@ -72,5 +72,5 @@ libraries = {
 [node name="switchO" type="StaticBody3D" parent="." index="3" groups=["interactuable"]]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="switchO" index="0"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00820923, 0.0784912, 0.00262451)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00820923, -0.0459561, 0.00262451)
 shape = SubResource("BoxShape3D_kqmvq")

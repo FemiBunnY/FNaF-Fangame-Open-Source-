@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Isn't It a pity?"
-run/main_scene="res://scenes/gameshader.tscn"
+run/main_scene="res://scenes/menu_screen.tscn"
 config/features=PackedStringArray("4.2", "GL Compatibility")
 run/max_fps=60
 config/icon="res://icon.svg"
@@ -29,6 +29,10 @@ window/stretch/mode="viewport"
 [editor]
 
 movie_writer/movie_file="/home/femibunny/Godot/rskt/example.avi"
+
+[gui]
+
+theme/custom_font="res://fonts/TMT-Paint-Regular.otf"
 
 [input]
 
