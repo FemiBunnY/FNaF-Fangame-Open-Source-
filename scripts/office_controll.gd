@@ -3,6 +3,9 @@ extends Node3D
 signal lights_on
 signal lights_off
 signal start_timer
+signal tv_on
+signal tv_off
+signal pepper_jumpscare
 
 @onready var light_1:OmniLight3D = $Lamps_02_001/OmniLight3D
 @onready var light_2:OmniLight3D = $Lamps_02_002/OmniLight3D
@@ -37,8 +40,10 @@ func _on_player_interaction_tv():
 		tv_material.emission_enabled = true
 		tv_click_on_audio.play()
 		tv_noise_audio.play()
+		emit_signal("tv_on")
 	elif tv_material.emission_enabled == true:
 		tv_material.emission_enabled = false
 		tv_click_off_audio.play()
 		tv_noise_audio.stop()
 		emit_signal("start_timer")
+		emit_signal("tv_off")

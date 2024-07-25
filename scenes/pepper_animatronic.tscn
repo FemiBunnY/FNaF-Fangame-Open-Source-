@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://dr4mfmjklhtk8"]
+
+[ext_resource type="Script" path="res://scripts/pepper_animatronic_controller.gd" id="1_4txj3"]
+[ext_resource type="PackedScene" uid="uid://d0jwc111oawj5" path="res://models ae/pepper_animatronic_rig.tscn" id="1_cb7q4"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_x2tmq"]
+height = 0.808115
+radius = 0.821028
+
+[node name="PepperAnimatronic" type="StaticBody3D"]
+script = ExtResource("1_4txj3")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0413064, 0.211132)
+shape = SubResource("CylinderShape3D_x2tmq")
+
+[node name="pepper_animatronic" parent="." instance=ExtResource("1_cb7q4")]
+
+[connection signal="tv_off" from="." to="pepper_animatronic" method="_on_pepper_animatronic_tv_off"]
+[connection signal="tv_on" from="." to="pepper_animatronic" method="_on_pepper_animatronic_tv_on"]

@@ -1,0 +1,91 @@
+[gd_scene load_steps=3 format=3 uid="uid://d0jwc111oawj5"]
+
+[ext_resource type="PackedScene" uid="uid://d5rdxaudas1k" path="res://models/pepper_animatronic.glb" id="1_jyghf"]
+[ext_resource type="Script" path="res://scripts/pepper_animatronic_rig_controller.gd" id="2_lk72y"]
+
+[node name="pepper_animatronic" instance=ExtResource("1_jyghf")]
+script = ExtResource("2_lk72y")
+
+[node name="Skeleton3D" parent="pepper_armature" index="0"]
+bones/0/position = Vector3(-1.60113e-17, -0.302296, -0.272982)
+bones/1/rotation = Quaternion(0.282917, 1.72483e-24, 6.28203e-17, 0.959144)
+bones/2/rotation = Quaternion(0.414379, 5.45331e-24, 9.20107e-17, 0.910104)
+bones/3/rotation = Quaternion(0, -3.30872e-24, -6.61744e-24, 1)
+bones/4/rotation = Quaternion(0.155008, 1.17768e-07, 1.84784e-08, 0.987913)
+bones/5/rotation = Quaternion(0.38992, 1.09774e-07, 1.39446e-07, 0.920849)
+bones/5/scale = Vector3(1, 1, 1)
+bones/6/rotation = Quaternion(0.114722, -1.18422e-07, 4.10278e-08, 0.993398)
+bones/7/rotation = Quaternion(-0.0401886, -1.19113e-07, -4.79086e-09, 0.999192)
+bones/8/rotation = Quaternion(0.141435, -0.192827, -0.940614, 0.240954)
+bones/9/rotation = Quaternion(0.903344, -0.175217, 0.160852, 0.356925)
+bones/9/scale = Vector3(1, 1, 1)
+bones/10/rotation = Quaternion(0.0339727, 0.203469, -0.43935, 0.87431)
+bones/11/rotation = Quaternion(-0.00633633, 0.0072141, 0.748588, 0.662966)
+bones/11/scale = Vector3(1, 1, 1)
+bones/12/rotation = Quaternion(0.00296689, -0.00297583, 0.707674, 0.706527)
+bones/12/scale = Vector3(1, 1, 1)
+bones/13/rotation = Quaternion(0.00717191, -0.0071951, 0.707985, 0.706155)
+bones/13/scale = Vector3(1, 1, 1)
+bones/14/rotation = Quaternion(0.141435, 0.192827, 0.940614, 0.240954)
+bones/15/rotation = Quaternion(0.903344, 0.175217, -0.160852, 0.356925)
+bones/15/scale = Vector3(1, 1, 1)
+bones/16/rotation = Quaternion(0.0339727, -0.203469, 0.43935, 0.87431)
+bones/17/rotation = Quaternion(-0.00633631, -0.00721407, -0.748588, 0.662966)
+bones/17/scale = Vector3(1, 1, 1)
+bones/18/rotation = Quaternion(0.0029669, 0.00297583, -0.707674, 0.706527)
+bones/19/rotation = Quaternion(0.00717191, 0.0071951, -0.707985, 0.706155)
+bones/19/scale = Vector3(1, 1, 1)
+bones/20/rotation = Quaternion(-0.000339614, 0.787408, 0.616432, 0.000259977)
+bones/20/scale = Vector3(1, 1, 1)
+bones/21/rotation = Quaternion(-0.98517, -0.00583418, -0.000848197, 0.171479)
+bones/21/scale = Vector3(1, 1, 1)
+bones/22/rotation = Quaternion(1.21214e-05, 0.00228886, 0.999982, -0.00548918)
+bones/22/scale = Vector3(1, 1, 1)
+bones/23/rotation = Quaternion(-2.32834e-06, -0.0054076, 0.999985, -0.000427692)
+bones/23/scale = Vector3(1, 1, 1)
+bones/24/rotation = Quaternion(0.000339614, 0.787408, 0.616432, -0.000259977)
+bones/24/scale = Vector3(1, 1, 1)
+bones/25/rotation = Quaternion(-0.98517, 0.00583418, 0.000848198, 0.171479)
+bones/25/scale = Vector3(1, 1, 1)
+bones/26/rotation = Quaternion(-1.21213e-05, 0.00228888, 0.999982, 0.00548918)
+bones/26/scale = Vector3(1, 1, 1)
+bones/27/rotation = Quaternion(2.32834e-06, -0.0054076, 0.999985, 0.000427692)
+bones/27/scale = Vector3(1, 1, 1)
+
+[node name="head_2" parent="pepper_armature/Skeleton3D" index="0"]
+transform = Transform3D(1, 1.42109e-14, -2.70006e-13, -7.81597e-14, -0.899798, -0.436307, -1.7053e-13, 0.436307, -0.899798, -2.28848e-14, 0.880345, 0.173879)
+
+[node name="finger_1_r" parent="pepper_armature/Skeleton3D" index="1"]
+transform = Transform3D(-0.759355, 0.45846, -0.46173, -0.307822, 0.372072, 0.875676, 0.573259, 0.807079, -0.14141, 0.972488, 0.0318195, -0.871411)
+
+[node name="arm_2_r_2" parent="pepper_armature/Skeleton3D" index="2"]
+transform = Transform3D(-0.119732, 0.978261, -0.169325, -0.155263, 0.150003, 0.976418, 0.980591, 0.143199, 0.133927, -0.032768, -0.0346024, -1.01321)
+
+[node name="arm_1_r_2" parent="pepper_armature/Skeleton3D" index="3"]
+transform = Transform3D(0.393552, 0.842861, -0.367018, -0.55869, -0.0977629, -0.823594, -0.730056, 0.529177, 0.432423, -0.350466, 0.333429, 0.0674051)
+
+[node name="finger_2_l" parent="pepper_armature/Skeleton3D" index="4"]
+transform = Transform3D(-0.759354, -0.458461, 0.46173, 0.307822, 0.372072, 0.875676, -0.57326, 0.807079, -0.14141, -0.972487, 0.0318192, -0.871411)
+
+[node name="arm_2_l_2" parent="pepper_armature/Skeleton3D" index="5"]
+transform = Transform3D(-0.119732, -0.978261, 0.169325, 0.155263, 0.150003, 0.976418, -0.980591, 0.143199, 0.133927, 0.0327679, -0.0346026, -1.01321)
+
+[node name="arm_1_l_2" parent="pepper_armature/Skeleton3D" index="6"]
+transform = Transform3D(0.393552, -0.842861, 0.367018, 0.55869, -0.0977629, -0.823594, 0.730056, 0.529177, 0.432423, 0.350466, 0.333429, 0.0674051)
+
+[node name="leg_2_r_2" parent="pepper_armature/Skeleton3D" index="7"]
+transform = Transform3D(1, -2.17348e-08, 9.78616e-10, 1.10558e-08, 0.550095, -0.835102, 1.61981e-08, 0.835102, 0.550095, 1.49012e-08, 0.3744, 0.993737)
+
+[node name="leg_1_r_2" parent="pepper_armature/Skeleton3D" index="8"]
+transform = Transform3D(1, -1.12456e-09, -2.28283e-10, -1.10049e-10, -0.250508, 0.968115, -1.1803e-09, -0.968114, -0.250508, -1.49012e-08, -0.292631, -0.567277)
+
+[node name="leg_2_l_2" parent="pepper_armature/Skeleton3D" index="9"]
+transform = Transform3D(1, 1.70724e-08, -1.75351e-09, -9.64064e-09, 0.550095, -0.835102, -1.24892e-08, 0.835102, 0.550095, -1.49012e-08, 0.3744, 0.993737)
+
+[node name="leg_1_l_2" parent="pepper_armature/Skeleton3D" index="10"]
+transform = Transform3D(1, 1.30044e-09, 1.13687e-10, 2.84672e-10, -0.250508, 0.968115, 1.29671e-09, -0.968114, -0.250508, 1.49012e-08, -0.292631, -0.567277)
+
+[node name="AnimationPlayer" parent="." index="1"]
+speed_scale = 0.2
+
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]

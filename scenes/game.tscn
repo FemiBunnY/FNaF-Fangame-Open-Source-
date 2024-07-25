@@ -7,8 +7,6 @@
 [ext_resource type="Script" path="res://scripts/ui_crosshair_control.gd" id="4_tyvx8"]
 [ext_resource type="Script" path="res://scripts/stw_follow_controller.gd" id="6_7r8sm"]
 [ext_resource type="Texture2D" uid="uid://cfeep22il60k5" path="res://ui/flashlight.png" id="7_g42jd"]
-[ext_resource type="Texture2D" uid="uid://02y65gybeuvd" path="res://ui/scream_paul.png" id="7_ykndc"]
-[ext_resource type="Texture2D" uid="uid://drd1f51dkwwcj" path="res://ui/scream_george.png" id="8_n0xn7"]
 [ext_resource type="FontFile" uid="uid://drldanni5u5vd" path="res://fonts/DS-DIGIB.TTF" id="8_tfmje"]
 [ext_resource type="PackedScene" uid="uid://dctkqstrbxv2m" path="res://scenes/animatronic.tscn" id="9_0bsv3"]
 [ext_resource type="Script" path="res://scripts/wtv_follow_controller.gd" id="9_co0t4"]
@@ -62,6 +60,8 @@
 [ext_resource type="Texture2D" uid="uid://ds7rs674p51jk" path="res://animations/sprites/george/0020.jpg" id="29_6ghny"]
 [ext_resource type="Texture2D" uid="uid://b1xygr2jusavu" path="res://animations/sprites/paul/0020.jpg" id="29_v1ae8"]
 [ext_resource type="AudioStream" uid="uid://dn2wvlfthmgc" path="res://sounds/jumpscare.ogg" id="30_8l30n"]
+[ext_resource type="Texture2D" uid="uid://cuo8qeqdg63hq" path="res://ui/scream_eyes.png" id="47_242kp"]
+[ext_resource type="AudioStream" uid="uid://ccubcqufl62qv" path="res://sounds/eyes_jumpscare.ogg" id="48_6nqi0"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_vetxk"]
 animations = [{
@@ -322,26 +322,6 @@ offset_bottom = 58.0
 size_flags_horizontal = 0
 texture = ExtResource("7_g42jd")
 
-[node name="ScreamPaul" type="TextureRect" parent="UI"]
-visible = false
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("7_ykndc")
-
-[node name="ScreamGeorge" type="TextureRect" parent="UI"]
-visible = false
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("8_n0xn7")
-
 [node name="Hour" type="Label" parent="UI"]
 layout_mode = 1
 anchors_preset = 1
@@ -377,7 +357,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="UI/Sensitivity"]
+[node name="VBoxContainer2" type="VBoxContainer" parent="UI/Sensitivity"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -385,20 +365,30 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -92.0
-offset_top = -51.0
+offset_top = -37.0
 offset_right = 92.0
-offset_bottom = -6.0
+offset_bottom = 37.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="SensitivityLabel" type="Label" parent="UI/Sensitivity/VBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/Sensitivity/VBoxContainer2"]
+layout_mode = 2
+
+[node name="SensitivityLabel" type="Label" parent="UI/Sensitivity/VBoxContainer2/VBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 24
 text = "Sensitivity"
 
-[node name="SensitivityScroller" type="HSlider" parent="UI/Sensitivity/VBoxContainer"]
+[node name="SensitivityScroller" type="HSlider" parent="UI/Sensitivity/VBoxContainer2/VBoxContainer"]
 layout_mode = 2
 value = 15.0
+
+[node name="HSeparator" type="HSeparator" parent="UI/Sensitivity/VBoxContainer2"]
+layout_mode = 2
+
+[node name="FullscreenSwitch" type="CheckButton" parent="UI/Sensitivity/VBoxContainer2"]
+layout_mode = 2
+text = "Fullscreen"
 
 [node name="GeorgeJumpscareAnimation" type="AnimatedSprite2D" parent="UI"]
 visible = false
@@ -425,6 +415,32 @@ frame_progress = 1.0
 [node name="JumpscareAudio" type="AudioStreamPlayer" parent="UI/PaulJumpscareAnimation"]
 stream = ExtResource("30_8l30n")
 volume_db = -19.142
+
+[node name="BlackScreen2" type="ColorRect" parent="UI"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="EyesScream" type="TextureRect" parent="UI/BlackScreen2"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("47_242kp")
+
+[node name="EyesJumpscareAudio" type="AudioStreamPlayer" parent="UI/BlackScreen2/EyesScream"]
+stream = ExtResource("48_6nqi0")
+volume_db = -15.0
+
+[node name="VisibilityTimer" type="Timer" parent="UI/BlackScreen2/EyesScream"]
 
 [node name="Office" parent="." instance=ExtResource("1_brfi8")]
 
@@ -481,7 +497,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.74233, 0, -0.944725)
 curve = SubResource("Curve3D_2ii4c")
 
 [node name="wtv follow" type="PathFollow3D" parent="window/window to ventilation"]
-transform = Transform3D(0.0153689, 0, -0.999875, 0, 1, 0, 0.999875, 0, 0.0153689, -0.0211468, 0, 0.0127858)
+transform = Transform3D(0.0153689, 0, -0.999873, 0, 1, 0, 0.999873, 0, 0.0153689, -0.0211468, 0, 0.0127858)
 loop = false
 script = ExtResource("9_co0t4")
 
@@ -600,11 +616,15 @@ pitch_scale = 1.2
 [connection signal="one_hour" from="UI" to="." method="_on_ui_one_hour"]
 [connection signal="timeout" from="UI/WaitAfterJumpscare" to="UI" method="_on_wait_after_jumpscare_timeout"]
 [connection signal="timeout" from="UI/Hour/TenMinutes" to="UI" method="_on_ten_minutes_timeout"]
-[connection signal="drag_ended" from="UI/Sensitivity/VBoxContainer/SensitivityScroller" to="Player" method="_on_sensitivity_scroller_drag_ended"]
+[connection signal="drag_ended" from="UI/Sensitivity/VBoxContainer2/VBoxContainer/SensitivityScroller" to="UI" method="_on_sensitivity_scroller_drag_ended"]
+[connection signal="drag_ended" from="UI/Sensitivity/VBoxContainer2/VBoxContainer/SensitivityScroller" to="Player" method="_on_sensitivity_scroller_drag_ended"]
+[connection signal="toggled" from="UI/Sensitivity/VBoxContainer2/FullscreenSwitch" to="UI" method="_on_check_box_toggled"]
+[connection signal="timeout" from="UI/BlackScreen2/EyesScream/VisibilityTimer" to="UI" method="_on_visibility_timer_timeout"]
 [connection signal="lights_off" from="Office" to="stage/Animatronic" method="_on_office_lights_off"]
 [connection signal="lights_off" from="Office" to="stage_george/animatronic_george" method="_on_office_lights_off"]
 [connection signal="lights_on" from="Office" to="stage/Animatronic" method="_on_office_lights_on"]
 [connection signal="lights_on" from="Office" to="stage_george/animatronic_george" method="_on_office_lights_on"]
+[connection signal="pepper_jumpscare" from="Office" to="UI" method="_on_office_pepper_jumpscare"]
 [connection signal="flashlight_off" from="Player" to="UI" method="_on_player_flashlight_off"]
 [connection signal="flashlight_on" from="Player" to="UI" method="_on_player_flashlight_on"]
 [connection signal="interacting" from="Player" to="UI" method="_on_player_interacting"]

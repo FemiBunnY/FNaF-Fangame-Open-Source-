@@ -26,4 +26,4 @@ func _on_fade_out_timer_timeout():
 	if phase == 0:
 		phase = 1
 	elif phase == 1:
-		get_tree().change_scene_to_file("res://scenes/gameshader.tscn")
+		get_tree().change_scene_to_file("res://scenes/menu_screen.tscn")

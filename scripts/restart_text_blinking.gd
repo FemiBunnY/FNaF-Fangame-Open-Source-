@@ -11,6 +11,6 @@ func _on_next_blink_timer_timeout():
 
 func _input(_event):
 	if Input.is_key_pressed(KEY_R):
-		get_tree().change_scene_to_file("res://scenes/gameshader.tscn")
+		get_tree().change_scene_to_file("res://scenes/game_shaded.tscn")
 	elif Input.is_key_pressed(KEY_E):
 		get_tree().change_scene_to_file("res://scenes/menu_screen.tscn")

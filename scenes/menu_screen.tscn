@@ -1,8 +1,16 @@
-[gd_scene load_steps=4 format=3 uid="uid://b3w330ppje16e"]
+[gd_scene load_steps=6 format=3 uid="uid://b3w330ppje16e"]
 
 [ext_resource type="PackedScene" uid="uid://bylle0xs0s5mt" path="res://models ae/george_animatronic_rig.tscn" id="1_p274g"]
 [ext_resource type="Script" path="res://scripts/menu_screen_controller.gd" id="1_xxsk1"]
+[ext_resource type="Shader" path="res://shaders/ps1graphics.gdshader" id="2_dypxp"]
 [ext_resource type="PackedScene" uid="uid://cnf6v1oprtmas" path="res://models ae/paul_animatronic_rig.tscn" id="3_bhb6n"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_1qh8n"]
+shader = ExtResource("2_dypxp")
+shader_parameter/enabled = true
+shader_parameter/dithering = true
+shader_parameter/colors = 12
+shader_parameter/dither_size = 1
 
 [node name="MenuScreen" type="Control"]
 layout_mode = 3
@@ -24,6 +32,7 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="SubViewportContainer" type="SubViewportContainer" parent="Menu"]
+material = SubResource("ShaderMaterial_1qh8n")
 layout_mode = 0
 offset_right = 320.0
 offset_bottom = 240.0

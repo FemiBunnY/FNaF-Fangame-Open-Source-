@@ -3,15 +3,20 @@ extends Control
 signal one_hour
 
 @onready var cross = $Crosshair
-@onready var scream_paul = $ScreamPaul
 @onready var flashlight_image = $FlashlightImage
-@onready var scream_george = $ScreamGeorge
 @onready var hour_label = $Hour
 @onready var timer = $Hour/TenMinutes
 @onready var wait_after_jumpscare = $WaitAfterJumpscare
 @onready var george_jumpscare_animation = $GeorgeJumpscareAnimation
 @onready var jumpscare_audio = $GeorgeJumpscareAnimation/JumpscareAudio
 @onready var paul_jumpscare_animation = $PaulJumpscareAnimation
+@onready var black_screen_2 = $BlackScreen2
+@onready var eyes_scream = $BlackScreen2/EyesScream
+@onready var eyes_jumpscare_audio = $BlackScreen2/EyesScream/EyesJumpscareAudio
+@onready var visibility_timer = $BlackScreen2/EyesScream/VisibilityTimer
+@onready var fullscreen_switch = $Sensitivity/VBoxContainer2/FullscreenSwitch
+@onready var sensitivity_scroller = $Sensitivity/VBoxContainer2/VBoxContainer/SensitivityScroller
+
 
 var interacting:bool = false
 
@@ -21,18 +26,31 @@ const CROSSHAIR_1 = preload("res://ui/crosshair_1.png")
 var hour:int = 12
 var minute:int = 0
 
+var user_prefs: UserPreferences
+
 func _ready() -> void:
+	user_prefs = UserPreferences.load_or_create()
+	
+	sensitivity_scroller.value = user_prefs.sensitivity
+	fullscreen_switch.button_pressed = user_prefs.fullscreen
+	
+	if user_prefs.fullscreen:
+		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
+	elif not user_prefs.fullscreen:
+		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
+	
 	george_jumpscare_animation.visible = false
 	george_jumpscare_animation.stop()
 	paul_jumpscare_animation.stop()
 	paul_jumpscare_animation.visible = false
 	
-	scream_paul.visible = false
-	scream_george.visible = false
 	flashlight_image.visible = false
 	update_hour()
 	timer.start()
-
+	
+	black_screen_2.visible = false
+	eyes_scream.visible = false
+	
 # Interaction
 func _on_player_interacting() -> void:
 	cross.texture = CROSSHAIR_2
@@ -43,7 +61,6 @@ func _on_player_notinteracting() -> void:
 # Flashlight
 func _on_player_flashlight_off() -> void:
 	flashlight_image.visible = false
-	# play audio
 
 func _on_player_flashlight_on() -> void:
 	flashlight_image.visible = true
@@ -80,3 +97,31 @@ func update_hour() -> void:
 
 func _on_wait_after_jumpscare_timeout():
 	get_tree().change_scene_to_file("res://scenes/gameover_screen.tscn")
+
+
+func _on_office_pepper_jumpscare():
+	black_screen_2.visible = true
+	eyes_scream.visible = true
+	eyes_jumpscare_audio.play()
+	visibility_timer.start()
+	
+func _physics_process(_delta):
+	if not visibility_timer.is_stopped():
+		eyes_scream.modulate = Color(1,1,1,visibility_timer.time_left)
+
+func _on_visibility_timer_timeout():
+	get_tree().change_scene_to_file("res://scenes/gameover_screen.tscn")
+
+
+func _on_check_box_toggled(_toggled_on):
+	if fullscreen_switch.button_pressed:
+		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
+		user_prefs.fullscreen = true
+	elif not fullscreen_switch.button_pressed:
+		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
+		user_prefs.fullscreen = false
+	user_prefs.save()
+	
+func _on_sensitivity_scroller_drag_ended(_value_changed):
+	user_prefs.sensitivity = sensitivity_scroller.value
+	user_prefs.save()

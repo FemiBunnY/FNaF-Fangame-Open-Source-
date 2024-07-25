@@ -38,9 +38,14 @@ var mouse_visible:bool = false
 @onready var flashlight_battery = $"../UI/FlashlightBattery"
 @onready var flashlight_animations = $CameraPivot/Camera/Flashlight/FlashlightAnimations
 @onready var sensitivity_ui = $"../UI/Sensitivity"
-@onready var sensitivity_scroller = $"../UI/Sensitivity/VBoxContainer/SensitivityScroller"
+@onready var sensitivity_scroller = $"../UI/Sensitivity/VBoxContainer2/VBoxContainer/SensitivityScroller"
+
+var user_prefs: UserPreferences
 
 func _ready() -> void:
+	user_prefs = UserPreferences.load_or_create()
+	sensitivity = float(user_prefs.sensitivity)/1000
+	
 	black_screen.set_color(Color(0,0,0,0))
 	flashlight_animations.play("RESET")
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
@@ -204,3 +209,4 @@ func _on_flashlight_animations_animation_finished(_anim_name):
 
 func _on_sensitivity_scroller_drag_ended(_value_changed):
 	sensitivity = sensitivity_scroller.value/1000
+	
