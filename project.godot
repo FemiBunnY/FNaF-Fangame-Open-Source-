@@ -11,16 +11,19 @@ config_version=5
 [application]
 
 config/name="Isn't It a pity?"
+config/version="1.0"
 run/main_scene="res://scenes/menu_screen.tscn"
 config/features=PackedStringArray("4.2", "GL Compatibility")
 run/max_fps=60
-config/icon="res://icon.svg"
+boot_splash/image="res://ui/warning_screen.png"
+boot_splash/use_filter=false
+config/icon="res://icon32.png"
+boot_splash/minimum_display_time=3000
 
 [display]
 
 window/size/viewport_width=320
 window/size/viewport_height=240
-window/size/always_on_top=true
 window/size/window_width_override=640
 window/size/window_height_override=480
 window/stretch/mode="viewport"

@@ -9,7 +9,7 @@ func _ready():
 	animation_player.speed_scale = 0
 
 func _on_pepper_animatronic_tv_on():
-	animation_player.speed_scale = 0.02
+	animation_player.speed_scale = 0.008
 
 
 func _on_pepper_animatronic_tv_off():

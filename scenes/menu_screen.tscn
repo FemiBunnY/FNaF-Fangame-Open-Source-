@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://b3w330ppje16e"]
+[gd_scene load_steps=7 format=3 uid="uid://b3w330ppje16e"]
 
 [ext_resource type="PackedScene" uid="uid://bylle0xs0s5mt" path="res://models ae/george_animatronic_rig.tscn" id="1_p274g"]
 [ext_resource type="Script" path="res://scripts/menu_screen_controller.gd" id="1_xxsk1"]
 [ext_resource type="Shader" path="res://shaders/ps1graphics.gdshader" id="2_dypxp"]
 [ext_resource type="PackedScene" uid="uid://cnf6v1oprtmas" path="res://models ae/paul_animatronic_rig.tscn" id="3_bhb6n"]
+[ext_resource type="AudioStream" uid="uid://da0ss10mghng6" path="res://sounds/menu_theme.ogg" id="5_ksibk"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_1qh8n"]
 shader = ExtResource("2_dypxp")
@@ -103,6 +104,7 @@ Night"
 flat = true
 
 [node name="MadeByText" type="Label" parent="Menu"]
+visible = false
 modulate = Color(1, 1, 1, 0.486275)
 layout_mode = 1
 anchors_preset = 7
@@ -117,5 +119,9 @@ grow_horizontal = 2
 grow_vertical = 0
 theme_override_font_sizes/font_size = 10
 text = "Made by FemiBunnY"
+
+[node name="MenuMusic" type="AudioStreamPlayer" parent="Menu"]
+stream = ExtResource("5_ksibk")
+autoplay = true
 
 [connection signal="button_up" from="Menu/VBoxContainer2/VBoxContainer/PlayButton" to="." method="_on_play_button_button_up"]

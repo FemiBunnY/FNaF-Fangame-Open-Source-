@@ -365,9 +365,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -92.0
-offset_top = -37.0
+offset_top = -41.0
 offset_right = 92.0
-offset_bottom = 37.0
+offset_bottom = 41.0
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -469,7 +469,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.56209, 0.537926, -0.0126625
 shape = SubResource("BoxShape3D_2vqhx")
 
 [node name="stage" type="Marker3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.18566, 0, -3.67393)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.18566, 0, -4.03937)
 
 [node name="stage to window" type="Path3D" parent="stage"]
 curve = SubResource("Curve3D_cdx4r")
@@ -491,13 +491,13 @@ visible = false
 mesh = SubResource("CapsuleMesh_sd1ag")
 
 [node name="window" type="Marker3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.74233, 0, -0.944725)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.74233, 0, -1.31017)
 
 [node name="window to ventilation" type="Path3D" parent="window"]
 curve = SubResource("Curve3D_2ii4c")
 
 [node name="wtv follow" type="PathFollow3D" parent="window/window to ventilation"]
-transform = Transform3D(0.0153689, 0, -0.999873, 0, 1, 0, 0.999873, 0, 0.0153689, -0.0211468, 0, 0.0127858)
+transform = Transform3D(0.0153689, 0, -0.999872, 0, 1, 0, 0.999872, 0, 0.0153689, -0.0211468, 0, 0.0127858)
 loop = false
 script = ExtResource("9_co0t4")
 
@@ -518,7 +518,7 @@ stream = ExtResource("11_574ds")
 volume_db = -12.0
 
 [node name="ventilation" type="Marker3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0262427, 1.15946, -5.11726)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0262427, 1.15946, -5.4827)
 
 [node name="ventilation to office" type="Path3D" parent="ventilation"]
 curve = SubResource("Curve3D_4s3kj")
@@ -546,7 +546,7 @@ visible = false
 mesh = SubResource("BoxMesh_vsvsd")
 
 [node name="stage_george" type="Marker3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.49233, 0, -3.84077)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.49233, 0, -4.20621)
 
 [node name="stage_to_window" type="Path3D" parent="stage_george"]
 curve = SubResource("Curve3D_186qd")
@@ -575,7 +575,7 @@ visible = false
 mesh = SubResource("CapsuleMesh_2os7u")
 
 [node name="window_george" type="Marker3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.62353, 0, -0.997738)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.62353, 0, -1.36318)
 
 [node name="window_to_stage" type="Path3D" parent="window_george"]
 curve = SubResource("Curve3D_hdfc3")
